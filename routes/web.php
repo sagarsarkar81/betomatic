@@ -78,7 +78,7 @@ Route::post('/Delete-album','ProfileController@DeleteAlbum');
 /*****test purpose********************/
 //Route::get('/test-upload','testing@index');
 //Route::get('/post-upload','testing@postUpload');
-Route::get('/testing','testing@index');
+Route::get('/testing','testing@TestingGuzzle');
 //Route::get('/testing','testing@TestingGuzzle');
 //****************************************************//
 Route::get('/Test-Page','EditProfileController@TestPage');

@@ -56,6 +56,14 @@
                         <span id="Available_balance">100 Gram$ </span>
                     </div>
                   </li>
+
+                  <li class="dropdown betfair_connect">
+                    <a data-toggle="modal" data-target="#open_betlogin" href="javascript:void(0);">
+                        <i data-toggle="tooltip" data-placement="bottom" title="Connect" ><img width="30px" src="{{asset('assets/front_end/images/betfair.png')}}"/></i>
+                    </a>
+
+                  </li>
+
                   <li class="dropdown top_icon drpdwnli">
                     <a href="javascript:void(0);" onclick="UnreadNotification()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         <img src="{{asset('assets/front_end/images/notification.png')}}"/>
@@ -156,6 +164,46 @@
             </nav>
             <div class="nav_hight"></div>
           <!-- Page header end -->
+
+<!-- betfair login  -->
+<div id="open_betlogin" class="modal login_form  fade registration_modal " role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h4 class="modal-title"> Connect with <span>Betfair</span> </h4>
+      </div>
+      <div class="modal-body">
+         <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+             <div class="betfair_img">
+              <img width="75px" src="{{asset('assets/front_end/images/betfair.png')}}">
+             </div>
+             <div class="form-group">
+               <input class="form-control" type="text" name="login" placeholder="Enter Betfair Username" />
+             </div>
+             <div class="form-group">
+               <input class="form-control" type="Password" name="" placeholder="Enter Betfair Password" />
+             </div>
+             <div class="form-group">
+               <input type="checkbox" name="vehicle2" value="Car"> Remember Me
+             </div>
+             <div class="form-group">
+               <button id="" class="btn-block" type="submit">Login </button>
+             </div>
+           </div>
+         </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
 <script>
 //setInterval(function(){UnreadMessageNotification()},5000);
 //setInterval(function(){ReadNotification()},5000);

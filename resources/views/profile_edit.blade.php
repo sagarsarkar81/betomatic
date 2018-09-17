@@ -68,7 +68,7 @@ $(document).ready(function(){
                                     <?php
                                      $userId = Session::get('user_id');
                                      $GetEmailVerfification = Users::where('id',$userId)->get()->toArray();
-                                     if(!empty($GetEmailVerfification)) { if($GetEmailVerfification[0][email_verification] == 0){ ?>
+                                     if(!empty($GetEmailVerfification)) { if($GetEmailVerfification[0]['email_verification'] == 0){ ?>
                                      <div class="email_info_wrap">
                                        <div class="email_info_content" id="email_info" style="display: none;">
                                          <span class="email_info_icon">

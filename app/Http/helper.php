@@ -122,4 +122,77 @@ function UpdatePoints($userId,$points,$reason)
     $data1['user_id'] = $userId;
     point_table::insert($data1);
 }
+
+/**
+ * Url from where data should fetch
+ *
+ * @author Anirban Saha
+ * @param  string $url feed url
+ * @return ArrayObject array from xml
+ */
+function getObjectFromXMl($url){
+    $xml    =   callCURL($url);
+    $obj    =   simplexml_load_string($xml, null, LIBXML_NOCDATA);
+    return $obj;
+}
+/**
+ * Url from where data should fetch
+ *
+ * @author Anirban Saha
+ * @param  string $url feed url
+ * @return ArrayObject array from xml
+ */
+function getObjectFromJSON($url)
+{
+    $json   =   callCURL($url);
+    $obj    =   json_decode($json);
+    return $obj;
+}
+/**
+ * call cUrl
+ *
+ * @author Anirban Saha
+ * @param  string $url calling url
+ * @return mixed      xml/json string
+ */
+function callCURL($url)
+{
+    $curl = curl_init($url);
+    curl_setopt_array($curl, array(
+        CURLOPT_ENCODING => 'gzip', // specify that we accept all supported encoding types
+        CURLOPT_RETURNTRANSFER => true
+    ));
+    $data = curl_exec($curl);
+    curl_close($curl);
+    if ($data === false) {
+        die('Can\'t get data');
+    }
+    return $data;
+}
+/**
+ *  this will return small loader. you need to show and hide by id
+ *
+ *  @author Anirban Saha
+ *  @return  string  html element of loader
+ */
+function smallLoader()
+{
+    return '<i class="loader" id="small_loader" style="display:none;"></i>';
+}
+
+function sendDataByCurl($url, $post)
+{
+    $headers = array();
+    $headers[] = 'Accept: application/json';
+    $headers[] = 'X-Application: IDolhrqI0275hGow';
+    $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+    $response = curl_exec($ch);
+
+    return $response;
+}
 ?>
