@@ -104,13 +104,51 @@ class testing extends Controller
 
     public function TestingGuzzle()
     {
-        $APIkey='c6d035e55cec51b1a92cebf6f6c31c553c46639ac654ce0bca6690def88eea03';
-        $url="https://apifootball.com/api/?action=get_standings&league_id=376&APIkey=".$APIkey;
-        $client = new Client();
-        $response = $client->get($url)->getBody();
-        $res = json_decode($response,true);
-        echo "<pre>";
-        print_r($res);die;
+        // $APIkey='c6d035e55cec51b1a92cebf6f6c31c553c46639ac654ce0bca6690def88eea03';
+        // $url="https://apifootball.com/api/?action=get_standings&league_id=376&APIkey=".$APIkey;
+        // $url = "https://identitysso.betfair.com/api/login ";
+        // $client = new Client();
+        // $response = $client->post($url, array(
+        // 'headers' => array(
+        //     'Accept' => 'application/json',
+        //     'X-Application' => 'IDolhrqI0275hGow',
+        //     'Content-Type' => 'application/x-www-form-urlencoded'
+        //     ),
+        // 'body' => array(
+        //     'email' => 'test@gmail.com',
+        //     'name' => 'Test user',
+        //     'password' => 'testpassword'
+        //     )
+        // ));
+        // $res = json_decode($response,true);
+        // echo "<pre>";
+        // print_r($res);die;
+
+
+        // $url = "https://identitysso.betfair.com/api/login ";
+        // $headers['Accept'] = "application/json";
+        // $headers['X-Application'] = "IDolhrqI0275hGow";
+        $body['username'] = "Solibet";
+        $body['password'] = "Solibet1";
+        //aa($body);
+        //$response = $client->createRequest("POST", $url, ['body'=>$body]);
+        //$response = $client->post($url,$headers,$body);
+        //aa($response);
+        //$request = $client->post($url,  ['body'=>$body]);
+        // $response = $client->send($response);
+        // echo "<pre>";
+        // print_r($response);die;
+       
+        // aa($request = $this->client->post($url,array(
+        //         'content-type' => 'application/json'
+        // ),array()));
+        // $request->setBody($body); #set body!
+        // $response = $request->send();
+        // aa($response);
+        //return $response;
+        $url = "https://identitysso.betfair.com/api/login ";
+        aa(sendDataByCurl($url, $body));
     }
 }
+
 ?>

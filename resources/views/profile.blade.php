@@ -59,7 +59,7 @@ use App\follow_users;
                    $GetFavouriteTeam = user_profiles::where('user_id',$FetchUserData[0]->id)->get()->toArray();
                    if(!empty($GetFavouriteTeam))
                    {
-                       $FavouriteTeam = json_decode($GetFavouriteTeam[0][favourite_teams],true);
+                       $FavouriteTeam = json_decode($GetFavouriteTeam[0]['favourite_teams'],true);
                        if(!empty($FavouriteTeam))
                        {
                            foreach($FavouriteTeam as $TeamValue)
@@ -70,7 +70,7 @@ use App\follow_users;
                                     foreach($TeamName as $Team)
                                     {
                                ?>
-                               <p><?php echo $Team[team_name];?></p>
+                               <p><?php echo $Team['team_name'];?></p>
                                <?php         
                                     }
                                }
@@ -242,7 +242,7 @@ use App\follow_users;
                <div role="tabpanel" class="tab-pane active" id="information">
                   <div class="information">
                      <p></p>
-                     <p>{{__('label.Bio')}} :  <span><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0][bio]; } else{ echo "No content"; } ; ?></span></p>
+                     <p>{{__('label.Bio')}} :  <span><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0]['bio']; } else{ echo "No content"; } ; ?></span></p>
                      <!--p>Gander :  <span>Male</span></p-->
                      <p> {{__('label.Years of member')}} : <span>3 Years</span></p>
                      <?php if(empty($FetchProfileData)) { ?>
@@ -267,22 +267,22 @@ use App\follow_users;
                     { 
                         foreach($GetAlbum as $Album)
                         {
-                            $ImagesInAlbum = photo_albums::where('album_id',$Album[id])->get()->toArray();
+                            $ImagesInAlbum = photo_albums::where('album_id',$Album['id'])->get()->toArray();
                             //echo '<pre>';print_r($ImagesInAlbum);
                             $CountImages = count($ImagesInAlbum);
                             //foreach($ImagesInAlbum as $Images)
                             //{
                     ?>
                       <li>
-                       <a href="#" data-toggle="modal" data-target="#show_album_img<?php echo $Album[id]; ?>">
+                       <a href="#" data-toggle="modal" data-target="#show_album_img<?php echo $Album['id']; ?>">
                         <!--img src="{{asset('assets/front_end/images/Lighthouse.jpg')}}"/-->
-                        <?php if(empty($ImagesInAlbum[0][images])) { ?>
+                        <?php if(empty($ImagesInAlbum[0]['images'])) { ?>
                         <img src="{{asset('assets/front_end/images/no_image.png')}}"/>
                         <?php } else{ ?>
-                        <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$ImagesInAlbum[0][images]; ?>"/>
+                        <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$ImagesInAlbum[0]['images']; ?>"/>
                         <?php } ?>
                         <div class="album_description">
-                          <p><i><?php echo $Album[album_description]; ?></i> <span><?php echo $CountImages; ?></span></p>
+                          <p><i><?php echo $Album['album_description']; ?></i> <span><?php echo $CountImages; ?></span></p>
                         </div>
                        </a>
                        <div class="dropdown album_edit">
@@ -290,8 +290,8 @@ use App\follow_users;
                           <img src="{{asset('assets/front_end/images/arrow_down.png')}}"/>
                           </a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="#" data-toggle="modal" data-target="#edit_album<?php echo $Album[id];?>">{{__('label.Edit')}} </a></li>
-                            <li><a href="javascript:void(0);" onclick="DeleteAlbum('<?php echo $Album[id];?>')">{{__('label.Delete')}} </a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#edit_album<?php echo $Album['id'];?>">{{__('label.Edit')}} </a></li>
+                            <li><a href="javascript:void(0);" onclick="DeleteAlbum('<?php echo $Album['id'];?>')">{{__('label.Delete')}} </a></li>
                           </ul>
                        </div>
                       </li>
@@ -311,7 +311,7 @@ use App\follow_users;
                         {
                             foreach($FetchProfileData as $KeyFavourite=>$ValueFavourite)
                             {
-                                $GetImage = json_decode($ValueFavourite[favourite_sports],true);
+                                $GetImage = json_decode($ValueFavourite['favourite_sports'],true);
                                 if(!empty($GetImage))
                                 {
                                     foreach($GetImage as $keyImage=>$ValueImage)
@@ -323,8 +323,8 @@ use App\follow_users;
                                             {
                         ?>
                             <li>
-                             <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value[sports_image]; ?>"/>
-                             <h5><?php echo $value[sports_name]; ?></h5>
+                             <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value['sports_image']; ?>"/>
+                             <h5><?php echo $value['sports_name']; ?></h5>
                             </li>
                         <?php
                                             }
@@ -350,7 +350,7 @@ use App\follow_users;
                             //print_r($FetchProfileData);
                             foreach($FetchProfileData as $KeyPlayerTeam=>$ValuePlayerTeam)
                             {
-                                $GetImage = json_decode($ValuePlayerTeam[favourite_teams],true);
+                                $GetImage = json_decode($ValuePlayerTeam['favourite_teams'],true);
                                 if(!empty($GetImage))
                                 {
                                     foreach($GetImage as $keyImageName=>$ValueImageName)
@@ -362,8 +362,8 @@ use App\follow_users;
                                             {
                         ?>
                         <li>
-                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value[team_pics]; ?>"/>
-                          <h5><?php echo $value[team_name];?></h5>
+                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value['team_pics']; ?>"/>
+                          <h5><?php echo $value['team_name'];?></h5>
                         </li>
                         <?php
                                             }
@@ -391,7 +391,7 @@ use App\follow_users;
                             //print_r($FetchProfileData);
                             foreach($FetchProfileData as $KeyPlayer=>$ValuePlayer)
                             {
-                                $GetImage = json_decode($ValuePlayerTeam[favourite_players],true);
+                                $GetImage = json_decode($ValuePlayerTeam['favourite_players'],true);
                                 if(!empty($GetImage))
                                 {
                                     foreach($GetImage as $KeyPlayer=>$ValuePlayer)
@@ -403,8 +403,8 @@ use App\follow_users;
                                             {
                          ?>
                          <li>
-                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value[players_image]; ?>"/>
-                          <h5><?php echo $value[players_name];?></h5>
+                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value['players_image']; ?>"/>
+                          <h5><?php echo $value['players_name'];?></h5>
                          </li>
                          <?php
                                             }
@@ -491,7 +491,7 @@ use App\follow_users;
        <form class="col-md-8 col-md-offset-2" id="BioUpdateModal" action="javascript:void(0);" autocomplete="off" enctype="multipart/form-data" onsubmit="BioModalFormSubmit()">
         <div class="form-group">
          <label>{{__('label.Enter your BIO')}}</label>
-         <textarea rows="3" class="form-control" name="bio" id="biotext" placeholder="{{__('label.Write something about you')}}"><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0][bio]; } else{ echo "No Content"; }?></textarea>
+         <textarea rows="3" class="form-control" name="bio" id="biotext" placeholder="{{__('label.Write something about you')}}"><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0]['bio']; } else{ echo "No Content"; }?></textarea>
         </div>
         <?php if(empty($FetchProfileData)) { ?>
          <button type="submit" class="btn">{{__('label.Save')}}</button>
@@ -569,7 +569,7 @@ use App\follow_users;
     foreach($GetAlbum as $Album)
     {
     ?>
-    <div id="edit_album<?php echo $Album[id];?>" data-easein="expandIn" class="registration_modal modal fade show_album_img" role="dialog">
+    <div id="edit_album<?php echo $Album['id'];?>" data-easein="expandIn" class="registration_modal modal fade show_album_img" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -581,10 +581,10 @@ use App\follow_users;
            
             <form class="" name="EditAlbumName" method="post" action="{{url('Edit-album-name')}}"  enctype="multipart/form-data" autocomplete="off">
                 {{ csrf_field() }}
-                <input type="hidden" name="albumId" value="<?php echo $Album[id];?>"/>
+                <input type="hidden" name="albumId" value="<?php echo $Album['id'];?>"/>
                 <div class="form-group col-md-6 col-md-offset-3 album_name">
                  <label>{{__('label.Edit Abum name')}}</label>
-                 <input type="text" class="form-control" value="<?php echo $Album[album_description]; ?>" name="EditAlbumName" required="required"/>
+                 <input type="text" class="form-control" value="<?php echo $Album['album_description']; ?>" name="EditAlbumName" required="required"/>
                  <p id="displayMsg" style="display: none;">{{__('label.Please enter album name')}}</p>
                 </div>
                <div class="clearfix"></div>
@@ -594,18 +594,18 @@ use App\follow_users;
                           <div class="show_album_images">
                             <ul>
                             <?php 
-                            $ImagesInAlbum = photo_albums::where('album_id',$Album[id])->get()->toArray();
+                            $ImagesInAlbum = photo_albums::where('album_id',$Album['id'])->get()->toArray();
                             if(!empty($ImagesInAlbum))
                             {
                                 foreach($ImagesInAlbum as $Images)
                                 {
                             ?>
                               <li>
-                               <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$Images[images]; ?>"/>
+                               <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$Images['images']; ?>"/>
                                
                                	<div class="checkbox img_delete_check">
-                                    <input name="checkbox[]" id="checkbox<?php echo $Images[id];?>" type="checkbox" value="<?php echo $Images[id];?>" class="validate[required]"/>
-        	                        <label for="checkbox<?php echo $Images[id];?>">
+                                    <input name="checkbox[]" id="checkbox<?php echo $Images['id'];?>" type="checkbox" value="<?php echo $Images['id'];?>" class="validate[required]"/>
+        	                        <label for="checkbox<?php echo $Images['id'];?>">
         	                        </label>
         	                    </div>
                               
@@ -645,13 +645,13 @@ if(!empty($GetAlbum)) {
     foreach($GetAlbum as $Album)
     {
     ?>
-    <div id="show_album_img<?php echo $Album[id];?>" data-easein="expandIn" class="registration_modal modal fade show_album_img" role="dialog">
+    <div id="show_album_img<?php echo $Album['id'];?>" data-easein="expandIn" class="registration_modal modal fade show_album_img" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><?php echo $Album[album_description]; ?></h4>
+            <h4 class="modal-title"><?php echo $Album['album_description']; ?></h4>
           </div>
           <div class="modal-body">
                <!-- Album view start -->
@@ -659,14 +659,14 @@ if(!empty($GetAlbum)) {
                           <div class="show_album_images">
                             <ul>
                                 <?php 
-                                $ImagesInAlbum = photo_albums::where('album_id',$Album[id])->get()->toArray();
+                                $ImagesInAlbum = photo_albums::where('album_id',$Album['id'])->get()->toArray();
                                 if(!empty($ImagesInAlbum))
                                 {
                                     foreach($ImagesInAlbum as $Images)
                                     {
                                 ?>
                                       <li>
-                                        <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$Images[images]; ?>"/>
+                                        <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$Images['images']; ?>"/>
                                         <div class="dropdown feed_more open" style="display: none;">
                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
                                           <img src="http://127.0.0.1:8000/assets/front_end/images/arrow_down.png" />
@@ -686,32 +686,32 @@ if(!empty($GetAlbum)) {
                             
                           </div>
                           <div class="clearfix"></div>
-                          <form class="" id="imageAlbumUpload2<?php echo $Album[id];?>" name="imageAlbumUpload2<?php echo $Album[id];?>" method="post" action="javascript:void(0);"  enctype="multipart/form-data">
+                          <form class="" id="imageAlbumUpload2<?php echo $Album['id'];?>" name="imageAlbumUpload2<?php echo $Album['id'];?>" method="post" action="javascript:void(0);"  enctype="multipart/form-data">
                               <div class="form-group upload_album_wrap">
-                              <span id="upload_album<?php echo $Album[id];?>" class="show_upload_album">
-                                  <label class="btn btn-default" for="<?php echo $Album[id];?>">
-                                      <input class="uploadFileSelector" onchange="uploadImageToThisAlbum(this);" id="<?php echo $Album[id];?>" type="file" name="file[]" multiple="" />
+                              <span id="upload_album<?php echo $Album['id'];?>" class="show_upload_album">
+                                  <label class="btn btn-default" for="<?php echo $Album['id'];?>">
+                                      <input class="uploadFileSelector" onchange="uploadImageToThisAlbum(this);" id="<?php echo $Album['id'];?>" type="file" name="file[]" multiple="" />
                                       <span> 
                                       <svg xmlns="#" width="18" height="15" viewBox="0 0 20 17">
                                         <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                                       </svg> Upload New Images </span>
                                   </label>
                               </span>
-                              <p id="DisplayMsgFileSize<?php echo $Album[id];?>" style="display: none;">Your uploaded file size is too large. Please select a valid file up to 5 mb.</p>
-                              <p id="DisplayMsgFileSize2<?php echo $Album[id];?>" style="display: none;">One of your uploaded file size is too large. Please select a valid file up to 5 mb.</p>
-                              <p id="DisplayMsgFileSize3<?php echo $Album[id];?>" style="display: none;">This is not a valid format. Please upload any image.</p>
-                              <p id="DisplayMsgFileSize4<?php echo $Album[id];?>" style="display: none;">This browser does not support HTML5 FileReader.</p>
+                              <p id="DisplayMsgFileSize<?php echo $Album['id'];?>" style="display: none;">Your uploaded file size is too large. Please select a valid file up to 5 mb.</p>
+                              <p id="DisplayMsgFileSize2<?php echo $Album['id'];?>" style="display: none;">One of your uploaded file size is too large. Please select a valid file up to 5 mb.</p>
+                              <p id="DisplayMsgFileSize3<?php echo $Album['id'];?>" style="display: none;">This is not a valid format. Please upload any image.</p>
+                              <p id="DisplayMsgFileSize4<?php echo $Album['id'];?>" style="display: none;">This browser does not support HTML5 FileReader.</p>
                               </div>
                               <div class="upload_image_view">
-                                 <div class="thumbnail_img" id="thumbnail_imgtwo<?php echo $Album[id];?>"></div>
+                                 <div class="thumbnail_img" id="thumbnail_imgtwo<?php echo $Album['id'];?>"></div>
                               </div>
-                              <div class="prgrsbar album_prgrsbar" id="prgrsbarAlbumImage2<?php echo $Album[id];?>" style="display: none;">
-                                  <div class="progress" id="progress2<?php echo $Album[id];?>" style="display: block;">
-                                     <div class="bar" id="barAlbumImage2<?php echo $Album[id];?>"></div >
-                                     <div class="percent" id="percentAlbumImage2<?php echo $Album[id];?>">0%</div >
+                              <div class="prgrsbar album_prgrsbar" id="prgrsbarAlbumImage2<?php echo $Album['id'];?>" style="display: none;">
+                                  <div class="progress" id="progress2<?php echo $Album['id'];?>" style="display: block;">
+                                     <div class="bar" id="barAlbumImage2<?php echo $Album['id'];?>"></div >
+                                     <div class="percent" id="percentAlbumImage2<?php echo $Album['id'];?>">0%</div >
                                   </div>
                               </div>
-                              <button type="submit" id="SaveAlbum2<?php echo $Album[id];?>" style="display: none;" class="btn album_upload" onclick="SubmitImageForm2(<?php echo $Album[id]; ?>)">Save Album</button>
+                              <button type="submit" id="SaveAlbum2<?php echo $Album['id'];?>" style="display: none;" class="btn album_upload" onclick="SubmitImageForm2(<?php echo $Album['id']; ?>)">Save Album</button>
                         </form>
                         </div>
                       <!-- Album view start -->
@@ -751,17 +751,17 @@ if(!empty($GetAlbum)) {
          {
             foreach($GetSportsDetails as $KeySports=>$ValueSports)
             {
-                $GetSportsId = json_decode($FetchProfileData[0][favourite_sports],true);
+                $GetSportsId = json_decode($FetchProfileData[0]['favourite_sports'],true);
          ?>
             <li>
              <div class="info-block block-info clearfix">
                 <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                    <label class="btn btn-default <?php if($GetSportsId != NULL) { if(in_array($ValueSports[id],$GetSportsId)) { echo "active"; } } ?>">
+                    <label class="btn btn-default <?php if($GetSportsId != NULL) { if(in_array($ValueSports['id'],$GetSportsId)) { echo "active"; } } ?>">
                         <div class="bizcontent">
-                            <input type="checkbox" <?php if($GetSportsId != NULL) { if(in_array($ValueSports[id],$GetSportsId)) { echo "checked"; } } ?> name="sports[]" autocomplete="off" value="<?php echo $ValueSports[id]; ?>"/>
+                            <input type="checkbox" <?php if($GetSportsId != NULL) { if(in_array($ValueSports['id'],$GetSportsId)) { echo "checked"; } } ?> name="sports[]" autocomplete="off" value="<?php echo $ValueSports['id']; ?>"/>
                             <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$ValueSports[sports_image]; ?>"/>
-                            <h5><?php echo $ValueSports[sports_name]; ?></h5>
+                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$ValueSports['sports_image']; ?>"/>
+                            <h5><?php echo $ValueSports['sports_name']; ?></h5>
                         </div>
                     </label>
                 </div>
@@ -803,17 +803,17 @@ if(!empty($GetAlbum)) {
                 {
                     foreach($GetTeamsDetails as $TeamKey=>$TeamValue)
                     {
-                        $GetSportsId = json_decode($FetchProfileData[0][favourite_teams],true);
+                        $GetSportsId = json_decode($FetchProfileData[0]['favourite_teams'],true);
                 ?>
                 <li>
                     <div class="info-block block-info clearfix">
                         <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                            <label class="btn btn-default <?php if($GetSportsId != NULL) { if(in_array($TeamValue[id],$GetSportsId)) { echo "active"; } } ?>">
+                            <label class="btn btn-default <?php if($GetSportsId != NULL) { if(in_array($TeamValue['id'],$GetSportsId)) { echo "active"; } } ?>">
                                 <div class="bizcontent">
-                                    <input type="checkbox" <?php if($GetSportsId != NULL) { if(in_array($TeamValue[id],$GetSportsId)) { echo "checked"; }  }?> name="teams[]" autocomplete="off" value="<?php echo $TeamValue[id]; ?>"/>
+                                    <input type="checkbox" <?php if($GetSportsId != NULL) { if(in_array($TeamValue['id'],$GetSportsId)) { echo "checked"; }  }?> name="teams[]" autocomplete="off" value="<?php echo $TeamValue['id']; ?>"/>
                                     <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                                    <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$TeamValue[team_pics]; ?>"/>
-                                    <h5><?php echo $TeamValue[team_pics]; ?></h5>
+                                    <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$TeamValue['team_pics']; ?>"/>
+                                    <h5><?php echo $TeamValue['team_pics']; ?></h5>
                                 </div>
                             </label>
                         </div>
@@ -845,7 +845,7 @@ if(!empty($GetAlbum)) {
                 foreach($GetPlayersDetails as $keyPlayers=>$valuePlayers)
                 {
                     //print_r($FetchProfileData);
-                    $GetSportsId = json_decode($FetchProfileData[0][favourite_players],true);
+                    $GetSportsId = json_decode($FetchProfileData[0]['favourite_players'],true);
                     //print_r($GetSportsId);
                     //if(!empty($GetSportsId))
                     //{
@@ -853,12 +853,12 @@ if(!empty($GetAlbum)) {
              <li>
                  <div class="info-block block-info clearfix">
                     <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                        <label class="btn btn-default <?php if($GetSportsId != NULL) { if(in_array($valuePlayers[id],$GetSportsId)) { echo "active"; } } ?>">
+                        <label class="btn btn-default <?php if($GetSportsId != NULL) { if(in_array($valuePlayers['id'],$GetSportsId)) { echo "active"; } } ?>">
                             <div class="bizcontent">
-                                <input type="checkbox" <?php if($GetSportsId != NULL) { if(in_array($valuePlayers[id],$GetSportsId)) { echo "checked"; } } ?> name="players[]" autocomplete="off" value="<?php echo $valuePlayers[id]; ?>"/>
+                                <input type="checkbox" <?php if($GetSportsId != NULL) { if(in_array($valuePlayers['id'],$GetSportsId)) { echo "checked"; } } ?> name="players[]" autocomplete="off" value="<?php echo $valuePlayers['id']; ?>"/>
                                 <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                                <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$valuePlayers[players_image]; ?>"/>
-                                <h5><?php echo $valuePlayers[players_name]; ?></h5>
+                                <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$valuePlayers['players_image']; ?>"/>
+                                <h5><?php echo $valuePlayers['players_name']; ?></h5>
                             </div>
                         </label>
                     </div>
