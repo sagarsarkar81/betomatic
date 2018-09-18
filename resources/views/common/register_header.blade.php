@@ -176,23 +176,28 @@
         <h4 class="modal-title"> Connect with <span>Betfair</span> </h4>
       </div>
       <div class="modal-body">
+         <div class="loader" style="display: none;" id="betfair_loader">
+          <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
+         </div>
          <div class="row">
            <div class="col-md-6 col-md-offset-3">
              <div class="betfair_img">
               <img width="75px" src="{{asset('assets/front_end/images/betfair.png')}}">
              </div>
-             <div class="form-group">
-               <input class="form-control" type="text" name="login" placeholder="Enter Betfair Username" />
-             </div>
-             <div class="form-group">
-               <input class="form-control" type="Password" name="" placeholder="Enter Betfair Password" />
-             </div>
-             <div class="form-group">
-               <input type="checkbox" name="vehicle2" value="Car"> Remember Me
-             </div>
-             <div class="form-group">
-               <button id="" class="btn-block" type="submit">Login </button>
-             </div>
+               <form action="javascript:void(0);" autocomplete="off" onsubmit="BetfairLogin();">
+                 <div class="form-group">
+                   <input class="form-control" type="text" id="betfair_username" name="betfair_username" placeholder="Enter Betfair Username" />
+                 </div>
+                 <div class="form-group">
+                   <input class="form-control" type="Password" id="betfair_password" name="betfair_password" placeholder="Enter Betfair Password" />
+                 </div>
+                 <div class="form-group">
+                   <input type="checkbox" name="remember_me" value="" id="check_id"> Remember Me
+                 </div>
+                 <div class="form-group">
+                   <button id="" class="btn-block" type="submit">Login </button>
+                 </div>
+              </form>
            </div>
          </div>
       </div>
@@ -361,4 +366,27 @@ function RechageUserAccount()
             }
         });
 }
+
+function BetfairLogin() {
+  if ($('#check_id').is(":checked"))
+  {
+    $("#betfair_loader").show();
+    var betfair_username = $("#betfair_username").val();
+    var betfair_password = $("#betfair_password").val();
+    $.ajax({
+        type: "POST",
+        url: "{{url('betfair-login')}}",
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {'betfair_username':betfair_username,'betfair_password':betfair_password},
+        success: function(result)
+        {
+            $("#betfair_loader").hide();
+            console.log(result);
+        }
+    });
+  }
+}
+
 </script>
