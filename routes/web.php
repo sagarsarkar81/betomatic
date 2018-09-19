@@ -219,4 +219,5 @@ Route::get('/check-authentication-of-friend/{randNos}','InviteFriend@checkAuthFo
 Route::get('/point-for-social-share','InviteFriend@pointForSocialShare');
 /*********Integration of Betfair Login*****************/
 Route::post('/betfair-login','BetFairController\loginController@BetfairLogin');
+Route::post('/betfair-login-normal','BetFairController\loginController@BetfairLoginNormal');
 ?>

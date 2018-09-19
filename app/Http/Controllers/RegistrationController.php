@@ -12,6 +12,7 @@ use App\point_table;
 use App\btg_user_betting_accounts;
 use Mail;
 use Session;
+use App\Models\BetfairModels\BetfairUserDetail;
 
 class RegistrationController extends Controller
 {
@@ -153,6 +154,19 @@ class RegistrationController extends Controller
                 UpdatePoints($value,1,'Login / day.');
             }
             /***********************************/
+            /*******Check Remember Me Option For User In Betfair************/
+            $checkUserInBetfair = BetfairUserDetail::where('btg_user_id',$value)->get();
+            if(!empty($checkUserInBetfair)) {
+                $body['username'] = $checkUserInBetfair[0]->betfair_username;
+                $body['password'] = $checkUserInBetfair[0]->betfair_password;
+                $url = "https://identitysso.betfair.com/api/login ";
+                $response = sendDataByCurl($url, $body);
+                if($response->status === "SUCCESS") {
+                    Session::put('user_token', $response->token);
+                }
+            }
+                                  
+            /***************************************************************/
             $request->session()->flash('success', 'You have successfully logged in.');
             echo $status;
         }else{
@@ -170,7 +184,6 @@ class RegistrationController extends Controller
         $userId = Session::get('user_id');
         $userData = Users::find($userId);
         Session::forget('AllComments');
-        //$GetReportItems = report_post_types::where('status',1)->get()->toArray();
         return view('home',compact('userData','GetReportItems'));
     }
 

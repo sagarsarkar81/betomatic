@@ -179,23 +179,25 @@
          <div class="loader" style="display: none;" id="betfair_loader">
           <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
          </div>
+         <div id="displayErrorLoginFail" style="display: none;">Login failed</div>
+         <div id="displayErrorRestricted" style="display: none;">Your Betfair Account Restricted</div>
          <div class="row">
            <div class="col-md-6 col-md-offset-3">
              <div class="betfair_img">
               <img width="75px" src="{{asset('assets/front_end/images/betfair.png')}}">
              </div>
-               <form action="javascript:void(0);" autocomplete="off" onsubmit="BetfairLogin();">
+               <form id="BetfairLoginForm" action="javascript:void(0)" autocomplete="off" onsubmit="BetfairLogin();">
                  <div class="form-group">
-                   <input class="form-control" type="text" id="betfair_username" name="betfair_username" placeholder="Enter Betfair Username" />
+                   <input class="form-control validate[required]" type="text" id="betfair_username" name="betfair_username" placeholder="Enter Betfair Username" />
                  </div>
                  <div class="form-group">
-                   <input class="form-control" type="Password" id="betfair_password" name="betfair_password" placeholder="Enter Betfair Password" />
+                   <input class="form-control validate[required]" type="Password" id="betfair_password" name="betfair_password" placeholder="Enter Betfair Password" />
                  </div>
                  <div class="form-group">
                    <input type="checkbox" name="remember_me" value="" id="check_id"> Remember Me
                  </div>
                  <div class="form-group">
-                   <button id="" class="btn-block" type="submit">Login </button>
+                   <button id="login_btn" class="btn-block" type="submit">Login </button>
                  </div>
               </form>
            </div>
@@ -317,6 +319,7 @@ function UnreadNotification()
         }
     });
 }
+
 function ReadNotification()
 {
     $.ajax({
@@ -338,6 +341,7 @@ function ReadNotification()
             }
         });
 }
+
 function CheckMessageText()
 {
     var CheckUser = $("#UserId").text();
@@ -351,6 +355,7 @@ function CheckMessageText()
         $("#SubmitButton").removeAttr('disabled');
     }
 }
+
 function RechageUserAccount()
 {
     $.ajax({
@@ -368,24 +373,54 @@ function RechageUserAccount()
 }
 
 function BetfairLogin() {
-  if ($('#check_id').is(":checked"))
-  {
-    $("#betfair_loader").show();
+  var valid = $("#BetfairLoginForm").validationEngine('validate');
+  if(valid == true) {
     var betfair_username = $("#betfair_username").val();
     var betfair_password = $("#betfair_password").val();
-    $.ajax({
-        type: "POST",
-        url: "{{url('betfair-login')}}",
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {'betfair_username':betfair_username,'betfair_password':betfair_password},
-        success: function(result)
-        {
-            $("#betfair_loader").hide();
-            console.log(result);
-        }
-    });
+    if ($('#check_id').is(":checked"))
+    {
+      $("#betfair_loader").show();
+      $.ajax({
+          type: "POST",
+          url: "{{url('betfair-login')}}",
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          data: {'betfair_username':betfair_username,'betfair_password':betfair_password},
+          success: function(result)
+          {
+              $("#betfair_loader").hide();
+              if(result == "success") {
+                window.location.href = "{{url('home')}}";
+              } else if (result == "fail") {
+                $("#displayErrorLoginFail").css('display','block').delay(3000).fadeOut();
+              } else if (result == "restricted") {
+                $("#displayErrorRestricted").css('display','block').delay(3000).fadeOut();
+              }
+          }
+      });
+    } else {
+      $("#betfair_loader").show();
+      $.ajax({
+          type: "POST",
+          url: "{{url('betfair-login-normal')}}",
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          data: {'betfair_username':betfair_username,'betfair_password':betfair_password},
+          success: function(result)
+          {
+              $("#betfair_loader").hide();
+              if(result == "success") {
+                window.location.href = "{{url('home')}}";
+              } else if (result == "fail") {
+                $("#displayErrorLoginFail").css('display','block').delay(3000).fadeOut();
+              } else if (result == "restricted") {
+                $("#displayErrorRestricted").css('display','block').delay(3000).fadeOut();
+              }
+          }
+      });
+    }
   }
 }
 

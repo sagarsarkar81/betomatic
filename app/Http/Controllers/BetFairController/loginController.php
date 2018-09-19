@@ -19,12 +19,52 @@ class loginController extends Controller
     				  'creation_date' => date("Y-m-d H:i:s"),
 					  'updation_date' => date("Y-m-d H:i:s"),
     				 );
-    	$query = BetfairUserDetail::insert($data);
-    	if($query == true)
-        {
-        	echo "success";
-        }else{
-        	echo "fail";
+        $body['username'] = $username;
+        $body['password'] = $password;
+        $url = "https://identitysso.betfair.com/api/login";
+        $response = sendDataByCurl($url, $body);
+        if($response->status === "SUCCESS") {
+            Session::put('user_token', $response->token);
+            $query = BetfairUserDetail::insert($data);
+            $msg = "Logged in successfully";
+            $status = "success";
+            $type = "success";
+        } elseif($response->status === "LOGIN_RESTRICTED") {
+            $msg = "Login is restricted";
+            $status = "restricted";
+            $type = "restricted";
+        } elseif($response->status === "FAIL") {
+            $msg = "Login failed";
+            $status = "fail";
+            $type = "fail";
         }
+        $request->session()->flash($type, $msg);
+        echo $status;
+    	
+    }
+
+    public function BetfairLoginNormal(Request $request) {
+        $username = $request->input('betfair_username');
+        $password = $request->input('betfair_password');
+        $body['username'] = $username;
+        $body['password'] = $password;
+        $url = "https://identitysso.betfair.com/api/login ";
+        $response = sendDataByCurl($url, $body);
+        if($response->status === "SUCCESS") {
+            Session::put('user_token', $response->token);
+            $msg = "Logged in successfully";
+            $status = "success";
+            $type = "success";
+        } elseif($response->status === "LOGIN_RESTRICTED") {
+            $msg = "Login is restricted";
+            $status = "restricted";
+            $type = "restricted";
+        } elseif($response->status === "FAIL") {
+            $msg = "Login failed";
+            $status = "fail";
+            $type = "fail";
+        }
+        $request->session()->flash($type, $msg);
+        echo $status;
     }
 }
