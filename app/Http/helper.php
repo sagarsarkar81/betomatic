@@ -193,6 +193,6 @@ function sendDataByCurl($url, $post)
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
     $response = curl_exec($ch);
 
-    return $response;
+    return json_decode($response);
 }
 ?>
