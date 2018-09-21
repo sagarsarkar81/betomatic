@@ -93,7 +93,8 @@ Route::post('/get-leaderboard-data-daywise','LeaderBoardController@GetLeaderBoar
 Route::post('/submit-report','NewsFeedController@SubmitReportAbuse');
 /******************************/
 /**************Left bar link up**************/
-Route::get('/all-sports','RegistrationController@AllSports');
+//Route::get('/all-sports','RegistrationController@AllSports');
+Route::get('/all-sports','BetFairController\SportsTypesController@getSportsTypes');
 /*********************************************/
 /***********odds page*******************/
 Route::get('/soccer-odds','SoccerOddsController@index');
@@ -220,4 +221,7 @@ Route::get('/point-for-social-share','InviteFriend@pointForSocialShare');
 /*********Integration of Betfair Login*****************/
 Route::post('/betfair-login','BetFairController\loginController@BetfairLogin');
 Route::post('/betfair-login-normal','BetFairController\loginController@BetfairLoginNormal');
+Route::get('/sports','BetFairController\SportsTypesController@getSportsTypes');
+//Route::get('/competitions','BetFairController\SportsTypesController@getAllCompetitions');
+Route::get('/competitions','BetFairController\SportsTypesController@getCountries');
 ?>

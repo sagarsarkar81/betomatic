@@ -195,4 +195,20 @@ function sendDataByCurl($url, $post)
 
     return json_decode($response);
 }
+
+function getDataByCurl($url, $post, $session_token)
+{
+    $headers = array();
+    $headers[] = 'Accept: application/json';
+    $headers[] = 'X-Application: IDolhrqI0275hGow';
+    $headers[] = 'X-Authentication:'.$session_token;
+    $headers[] = 'Content-Type: application/json';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+    $response = curl_exec($ch);
+    return json_decode($response);
+}
 ?>
