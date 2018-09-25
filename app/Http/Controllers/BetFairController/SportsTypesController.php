@@ -25,13 +25,52 @@ class SportsTypesController extends Controller
         $session_token = Session::get('user_token');
         $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listCompetitions/";
         $data['listCompetitionsRequestParams'] = new ListCompetitionsRequestParams();
-        $leagues['competitions'] = getDataByCurl($url, $data, $session_token);
-        foreach($leagues['competitions'] as $key=>$value) {
+        $leagues = getDataByCurl($url, $data, $session_token);
+        //echo $leagues[0]->competition->id;
+        // $leagueArray = [];
+        // foreach($leagues as $key=>$value) {
+        //     $leagueArray['leagues'][$key]['id'] = $value->competition->id;
+        //     $leagueArray['leagues'][$key]['name'] = $value->competition->name;
+        // }
+        //aa($leagueArray);
+        //aa($leagues['competitions']);
+        //foreach($leagues['competitions'] as $key=>$value) {
             //echo $value->competition->name;
             //echo $value->competition->id;
-            $this->getEventByCompetitions($value->competition->id);
-        }
+            //$this->getEventByCompetitions($value->competition->id);
+        //}
         //return view('BetFairViews/oddsListing', $leagues);
+        $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listEvents/";
+        $data['listEventsRequestParams'] = new ListEventTypesRequestParams();
+        $events = getDataByCurl($url, $data, $session_token);
+        // $collection = collect($events['matches']);
+        // $events = $collection->groupBy('event.competitionId')->toArray();
+        $eventsCollection = collect($events['matches']);
+        $eventByCountry = $eventsCollection->groupBy('event.countryCode')->toArray();
+
+        //$session_token = Session::get('user_token');
+        $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listCountries/";
+        $data['listCountriesRequestParams'] = new ListEventsRequestParams();
+        $data['listCountriesRequestParams']->countryCodes = [""];
+        $data['countryCode'] = getDataByCurl($url, $data, $session_token);
+
+        foreach($events as $key=>$value)
+        {
+            if($value->event->competitionId == $leagues[$key]->competition->id) {
+                $countryName = countryCodeToCountry($value->event->countryCode);
+                $leagueName = $leagues[$key]->competition->name;
+                $league_details =   [];
+                $league_details['country_name'] =   $countryName;
+                $league_details['league_name']  =   $leagueName;
+
+                $leaguesDetails['league_id'] = $league_details;
+                //$LeagueWiseMatch[$value['league_id']][$value['match_id']][] = $value;
+                //aa($leaguesDetails);
+                echo "<pre>";
+                print_r($leaguesDetails);
+            }
+        }
+        //return view('BetFairViews/oddsListing',$leagueArray,$data);
     }
 
     public function getEventByCompetitions($competitionsId) {
@@ -44,17 +83,17 @@ class SportsTypesController extends Controller
         //aa(getDataByCurl($url, $data, $session_token));
     }
 
-    public function getCountries() {
-        $session_token = Session::get('user_token');
-        $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listCountries/";
-        $data['listCountriesRequestParams'] = new ListEventsRequestParams();
-        $data['listCountriesRequestParams']->countryCodes = [""];
-        $country['countryCode'] = getDataByCurl($url, $data, $session_token);
-        //aa(getDataByCurl($url, $data, $session_token));
-        // foreach($competitions as $key=>$value) {
-        //     echo $value->competition->name;
-        // }
-        return view('BetFairViews/oddsListing', $country);
-    }
+    // public function getCountries() {
+    //     $session_token = Session::get('user_token');
+    //     $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listCountries/";
+    //     $data['listCountriesRequestParams'] = new ListEventsRequestParams();
+    //     $data['listCountriesRequestParams']->countryCodes = [""];
+    //     $country['countryCode'] = getDataByCurl($url, $data, $session_token);
+    //     //aa(getDataByCurl($url, $data, $session_token));
+    //     // foreach($competitions as $key=>$value) {
+    //     //     echo $value->competition->name;
+    //     // }
+    //     return view('BetFairViews/oddsListing', $country);
+    // }
 }
 
