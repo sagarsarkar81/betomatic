@@ -179,13 +179,16 @@
          <div class="loader" style="display: none;" id="betfair_loader">
           <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
          </div>
-         <div id="displayErrorLoginFail" style="display: none;">Login failed</div>
-         <div id="displayErrorRestricted" style="display: none;">Your Betfair Account Restricted</div>
+         
          <div class="row">
            <div class="col-md-6 col-md-offset-3">
              <div class="betfair_img">
               <img width="75px" src="{{asset('assets/front_end/images/betfair.png')}}">
              </div>
+                <div class="error_message">
+                <p id="displayErrorLoginFail" style="display: none;">Login failed</p>
+                <p id="displayErrorRestricted" style="display: none;">Your Betfair Account Restricted</p>
+                </div> 
                <form id="BetfairLoginForm" action="javascript:void(0)" autocomplete="off" onsubmit="BetfairLogin();">
                  <div class="form-group">
                    <input class="form-control validate[required]" type="text" id="betfair_username" name="betfair_username" placeholder="Enter Betfair Username" />
@@ -193,7 +196,7 @@
                  <div class="form-group">
                    <input class="form-control validate[required]" type="Password" id="betfair_password" name="betfair_password" placeholder="Enter Betfair Password" />
                  </div>
-                 <div class="form-group">
+                 <div class="form-group rember_me">
                    <input type="checkbox" name="remember_me" value="" id="check_id"> Remember Me
                  </div>
                  <div class="form-group">

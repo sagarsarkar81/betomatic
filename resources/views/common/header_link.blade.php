@@ -6,9 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="icon" href="{{asset('assets/front_end/images/favicon.ico')}}" type="image/x-icon" />
-<title>Welcome to Betomatic</title>
+<title>Welcome to Solibet</title>
 <link type="text/css" rel="stylesheet" href="{{asset('assets/front_end/css/bootstrap.min.css')}}"/>
 <link type="text/css" rel="stylesheet" href="{{asset('assets/front_end/css/Style.css')}}"/>
+<link type="text/css" rel="stylesheet" href="{{asset('assets/front_end/css/flagIcon.css')}}"/>
 <link type="text/css" rel="stylesheet" href="{{asset('assets/front_end/css/tutorial.css')}}"/>
 <link type="text/css" rel="stylesheet" href="{{asset('assets/front_end/font-awesome-4.3.0/css/font-awesome.min.css')}}"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>

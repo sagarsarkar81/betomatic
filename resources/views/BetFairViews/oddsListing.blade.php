@@ -25,8 +25,12 @@
                      <div class="top_league_wrap">
                         <h3>Top Leagues</h3>
                         <ul>
-                           @foreach($competitions as $key=>$value)
-                            <li><a href="javascript:void(0)" onclick="MoveToSelectedLeague({{ $value->competition->id }})">{{ $value->competition->name }}</a></li>
+                           @foreach($countryCode as $key=>$value)
+                            <li>
+                              <a href="javascript:void(0)" onclick="MoveToSelectedLeague({{ $value->countryCode }})">
+                              <span  class="flag-icon flag-icon-{{ strtolower($value->countryCode) }}"></span> {{ countryCodeToCountry($value->countryCode) }}
+                              </a>
+                            </li>
                            @endforeach
                         </ul>
                      </div>

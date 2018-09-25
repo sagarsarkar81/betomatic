@@ -26,10 +26,22 @@ class SportsTypesController extends Controller
         $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listCompetitions/";
         $data['listCompetitionsRequestParams'] = new ListCompetitionsRequestParams();
         $leagues['competitions'] = getDataByCurl($url, $data, $session_token);
-        // foreach($competitions as $key=>$value) {
-        //     echo $value->competition->name;
-        // }
+        foreach($leagues['competitions'] as $key=>$value) {
+            //echo $value->competition->name;
+            //echo $value->competition->id;
+            $this->getEventByCompetitions($value->competition->id);
+        }
         //return view('BetFairViews/oddsListing', $leagues);
+    }
+
+    public function getEventByCompetitions($competitionsId) {
+        $session_token = Session::get('user_token');
+        $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listEvents/";
+        $data['listEventsRequestParams'] = new ListEventTypesRequestParams();
+        $data['listEventsRequestParams']->$competitionIds = ["'".$competitionsId."'"];
+        dd($data);
+        //$events['matches'] = getDataByCurl($url, $data, $session_token);
+        //aa(getDataByCurl($url, $data, $session_token));
     }
 
     public function getCountries() {
@@ -37,11 +49,12 @@ class SportsTypesController extends Controller
         $url = "https://sportsbook-api.betfair.com/betting/rest/v1/listCountries/";
         $data['listCountriesRequestParams'] = new ListEventsRequestParams();
         $data['listCountriesRequestParams']->countryCodes = [""];
-        aa(getDataByCurl($url, $data, $session_token));
+        $country['countryCode'] = getDataByCurl($url, $data, $session_token);
+        //aa(getDataByCurl($url, $data, $session_token));
         // foreach($competitions as $key=>$value) {
         //     echo $value->competition->name;
         // }
-        return view('BetFairViews/oddsListing', $leagues);
+        return view('BetFairViews/oddsListing', $country);
     }
 }
 

@@ -222,6 +222,6 @@ Route::get('/point-for-social-share','InviteFriend@pointForSocialShare');
 Route::post('/betfair-login','BetFairController\loginController@BetfairLogin');
 Route::post('/betfair-login-normal','BetFairController\loginController@BetfairLoginNormal');
 Route::get('/sports','BetFairController\SportsTypesController@getSportsTypes');
-//Route::get('/competitions','BetFairController\SportsTypesController@getAllCompetitions');
-Route::get('/competitions','BetFairController\SportsTypesController@getCountries');
+Route::get('/competitions','BetFairController\SportsTypesController@getAllCompetitions');
+//Route::get('/competitions','BetFairController\SportsTypesController@getCountries');
 ?>

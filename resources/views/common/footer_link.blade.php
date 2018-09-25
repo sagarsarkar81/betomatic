@@ -2,9 +2,9 @@
 <script src="{{asset('assets/front_end/js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/front_end/js/bootstrap-select.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/front_end/js/velocity.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/front_end/js/mCustomScrollbar.concat.min.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('assets/front_end/js/mCustomScrollbar.concat.min.js')}}" type="text/javascript"></script> -->
 <script src="{{asset('assets/front_end/js/dropdownanimation.js')}}" type="text/javascript"></script>
-<script>
+<!-- <script>
     (function($){
       $(window).load(function(){
 
@@ -16,7 +16,7 @@
       });
 
     })(jQuery);
-  </script>
+  </script> -->
   <script>
   $('.sidenav').click (function(){
       $('.sidenav').hasClass('showhide')

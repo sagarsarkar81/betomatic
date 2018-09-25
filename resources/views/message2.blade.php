@@ -68,11 +68,11 @@ use App\Users;
 <!-- Modal -->
 <div id="message_UserSearch" data-easein="expandIn" class="registration_modal modal fade message_UserSearch" role="dialog">
    <div class="modal-dialog">
-      <!---loader--->
+      <!-- -loader- -->
       <div class="loader" style="display: none;" id="body_loader">
-         <img src="http://betogram.com/assets/front_end/images/loading.gif"/>
+         <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
       </div>
-      <!----------------------->
+      <!-- -->
       <!-- Modal content-->
       <div class="modal-content">
          <div class="modal-header">
@@ -80,7 +80,7 @@ use App\Users;
             <h4 class="modal-title">Search People</h4>
          </div>
          <div class="modal-body">
-            <!------loader----->
+            <!-- ----loader--- -->
             <div class="loader" style="display: none;" id="search_loader">
               <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
             </div>

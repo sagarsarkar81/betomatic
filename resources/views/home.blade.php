@@ -128,11 +128,11 @@
    <!-- Page body content -->
 </div>
 <!-- page-content-wrapper -->
-<!---modal for report abuse----->
+<!-- -modal for report abuse--- -->
 <!--div id="report_abuse" data-easein="expandIn" class="registration_modal modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="loader" style="display: none;" id="modal_loader_report">
-        <img src="http://betogram.com/assets/front_end/images/loading.gif"/>
+        <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
     </div>
 
     <div class="modal-content">
@@ -171,7 +171,7 @@
 <div id="Privacy" data-easein="expandIn" class="registration_modal modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="loader" style="display: none;" id="modal_loader_privacy">
-        <img src="http://betogram.com/assets/front_end/images/loading.gif"/>
+        <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
     </div>
     <!-- Modal content-->
     <div class="modal-content">
