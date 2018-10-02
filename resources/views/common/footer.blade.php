@@ -2,7 +2,7 @@
 <!-- footer part Start -->
     <footer>
         <div class="footer_wrap">
-           <p><a href="<?php if(Session::get('user_id')) {?> {{url('home')}} <?php }else{?> {{url('login')}} <?php } ?>">betomatic.se</a> <i class="fa fa-copyright" aria-hidden="true"></i> 2018</p>
+           <p><a href="<?php if(Session::get('user_id')) {?> {{url('home')}} <?php }else{?> {{url('login')}} <?php } ?>">solibet.se</a> <i class="fa fa-copyright" aria-hidden="true"></i> 2018</p>
            <div class="languages">
              <div class="dropdown languages_drop">
                   <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -29,12 +29,12 @@
 <!-- Modal -->
     <div id="LikeViewModal" data-easein="expandIn" class="registration_modal modal fade message_UserSearch" role="dialog">
        <div class="modal-dialog">
-          <!---loader--->
+          <!-- -loader- -->
           <div class="loader" style="display: none;" id="modal_loader">
-             <img src="http://betogram.com/assets/front_end/images/loading.gif"/>
+             <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
           </div>
-          <!----------------------->
-          <!-- Modal content-->
+          <!-- ------------------- -->
+          <!-- Modal content -->
           <div class="modal-content">
              <div class="modal-header">
                 <button type="button" class="close" id="ModalClose" data-dismiss="modal">&times;</button>
@@ -55,11 +55,11 @@
 <!-- Modal for comment like -->
     <div id="LikeViewModalForComment" data-easein="expandIn" class="registration_modal modal fade message_UserSearch" role="dialog">
        <div class="modal-dialog">
-          <!---loader--->
+          <!-- -loader- -->
           <div class="loader" style="display: none;" id="modal_loader2">
-             <img src="http://betogram.com/assets/front_end/images/loading.gif"/>
+             <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
           </div>
-          <!----------------------->
+          <!-- ///////////// -->
           <!-- Modal content-->
           <div class="modal-content">
              <div class="modal-header">
