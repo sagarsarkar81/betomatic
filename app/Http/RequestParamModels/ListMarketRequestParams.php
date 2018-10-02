@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\RequestParamModels;
 use App\Http\RequestParamModels\MarketFilterRequestParams;
 
-class ListEventTypesRequestParams {
+class ListMarketRequestParams {
     public $marketFilter;
-    public $locale;
+    public $currencyCode = ["USD"];
     public function __construct() {
         $this->marketFilter = new MarketFilterRequestParams();
     }
 }
+
 ?>
