@@ -58,187 +58,35 @@
                         <div id="League" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" style="">
                            <div class="panel-body">
                               @foreach($matches as $matchKey=>$matchValue)
-                              {{ $matchValue->event->id }}
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
+                              @isset($marketDetails[$matchValue->event->id])
+                                 @php 
+                                  $matchDetails = $marketDetails[$matchValue->event->id][0];
+                                 @endphp
+                                  <div class="match_holder">
+                                    <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
+                                        <div class="match_title_time"> 
+                                          <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
+                                          <span class="pre_match_title" title="" data-original-title="{{ $matchDetailsValue[0]->runnerDetails[0]->selectionName }} | Tottenham">
+                                          <a href="#">{{ $matchDetails->runnerDetails[0]->selectionName }} | {{ $matchDetails->runnerDetails[2]->selectionName }}</a></span>
+                                        </div>
                                     </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
+                                    
+                                    <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
+                                        <ul class="League_odd_list">
+                                          <li><a id="" href="javascript:void(0);" data-original-title="" title="">{{ number_format($matchDetails->runnerDetails[0]->winRunnerOdds->decimal,2) }}</a></li>
+                                          <li><a id="" href="javascript:void(0);" data-original-title="" title="">{{ number_format($matchDetails->runnerDetails[1]->winRunnerOdds->decimal,2) }}</a></li>
+                                          <li><a id="" href="javascript:void(0);" data-original-title="" title="">{{ number_format($matchDetails->runnerDetails[2]->winRunnerOdds->decimal,2) }}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                  </div>
+                                  
+                              @endisset
                               @endforeach
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
                            </div>
                         </div>
                      </div>
                      @endforeach
-                     <!--div class="panel panel-default League_wrap">
-                        <div class="panel-heading accordion-opened" role="tab" id="">
-                           <h4 class="panel-title">
-                              <a class="accordion-toggle" role="button" data-toggle="collapse" href="#League1" aria-expanded="true" aria-controls="collapseOne">
-                              <img src="images/flag/tanz.png" />  Sweden - Allsvenskan
-                              </a>
-                           </h4>
-                        </div>
-                        <div id="League1" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" style="">
-                           <div class="panel-body">
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="panel panel-default League_wrap">
-                        <div class="panel-heading accordion-opened" role="tab" id="">
-                           <h4 class="panel-title">
-                              <a class="accordion-toggle" role="button" data-toggle="collapse" href="#League5" aria-expanded="true" aria-controls="collapseOne">
-                              <img src="images/flag/mali.png" />   Italy - Seria A
-                              </a>
-                           </h4>
-                        </div>
-                        <div id="League5" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" style="">
-                           <div class="panel-body">
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="panel panel-default League_wrap">
-                        <div class="panel-heading accordion-opened" role="tab" id="">
-                           <h4 class="panel-title">
-                              <a class="accordion-toggle" role="button" data-toggle="collapse" href="#League11" aria-expanded="true" aria-controls="collapseOne">
-                              <img src="images/flag/semo.png" />  Sweden - Allsvenskan
-                              </a>
-                           </h4>
-                        </div>
-                        <div id="League11" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" style="">
-                           <div class="panel-body">
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
-                              <div class="match_holder">
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <div class="match_title_time"> 
-                                       <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                       <span class="pre_match_title" title="" data-original-title="West Ham | Tottenham">
-                                       <a href="#">West Ham | Tottenham</a></span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
-                                    <ul class="League_odd_list">
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">6.00</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">3.80</a></li>
-                                       <li><a id="" href="javascript:void(0);" data-original-title="" title="">1.57</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clearfix"></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div-->
                   </div>
                   <!-- choose league -->
                   <div class="clearfix"></div>
