@@ -24,7 +24,9 @@
                      </div>
                      <div class="top_league_wrap">
                         <h3>Top Countries</h3>
-                        <ul>
+                        <input type="hidden" id="lastIndex" value="{{ $lastIndexOfCountry }}">
+                        <input type="hidden" id="totalCountry" value="{{ $countCountry }}">
+                        <ul id="appendCountryList">
                            @foreach($countryCode as $key=>$value)
                            <li>
                               <a href="javascript:void(0)" onclick="MoveToSelectedLeague({{ $value->countryCode }})">
@@ -33,40 +35,43 @@
                            </li>
                            @endforeach
                         </ul>
+                        <div id="ShowMore">
+                          <a href="javascript:void(0)" onclick="ShowMoreCountry()">Show More</a>
+                        </div>
                      </div>
                   </div>
                   <!-- choose league -->
                   <!-- choose league -->
-                  <div class="col-md-8 col-sm-12">
-                     <div class="Select_odds">
+                  <div-- class="col-md-9 col-sm-12">
+                     <!--div class="Select_odds">
                         <select>
                            <option>Odds from Bet 365</option>
                            <option>Odds from Bet 365</option>
                            <option>Odds from Bet 365</option>
                         </select>
-                     </div>
+                     </div-->
                      <div class="clearfix"></div>
                      @foreach($eventByCountry as $leagueId=>$matches)
                      <div class="panel panel-default League_wrap">
                         <div class="panel-heading accordion-opened" role="tab" id="">
                            <h4 class="panel-title">
-                              <a class="accordion-toggle" role="button" data-toggle="collapse" href="#League" aria-expanded="true" aria-controls="collapseOne">
+                           <a class="accordion-toggle" role="button" data-toggle="collapse" href="#League{{ $leagueId }}" aria-expanded="true" aria-controls="collapseOne">
                               <span  class="flag-icon flag-icon-{{ strtolower($matches[0]->event->countryCode) }}"></span>   {{ countryCodeToCountry($matches[0]->event->countryCode) }} - {{ $competitions[$leagueId] }}
                               </a>
                            </h4>
                         </div>
-                        <div id="League" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" style="">
+                      <div id="League{{ $leagueId }}" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" style="">
                            <div class="panel-body">
                               @foreach($matches as $matchKey=>$matchValue)
                               @isset($marketDetails[$matchValue->event->id])
-                                 @php 
+                                 @php
                                   $matchDetails = $marketDetails[$matchValue->event->id][0];
                                  @endphp
                                   <div class="match_holder">
                                     <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
                                         <div class="match_title_time"> 
-                                          <span class="pre_match_time" data-original-title="" title="">1396/07/01 15:00</span>
-                                          <span class="pre_match_title" title="" data-original-title="{{ $matchDetailsValue[0]->runnerDetails[0]->selectionName }} | Tottenham">
+                                        <span class="pre_match_time" data-original-title="" title="">{{ date("Y-m-d H:i", strtotime($matchValue->event->openDate)) }}</span>
+                                          <span class="pre_match_title" title="" data-original-title="{{ $matchDetailsValue[0]->runnerDetails[0]->selectionName }} | {{ $matchDetails->runnerDetails[2]->selectionName }}">
                                           <a href="#">{{ $matchDetails->runnerDetails[0]->selectionName }} | {{ $matchDetails->runnerDetails[2]->selectionName }}</a></span>
                                         </div>
                                     </div>
@@ -87,13 +92,18 @@
                         </div>
                      </div>
                      @endforeach
+                     <div class="clearfix"></div>
                   </div>
                   <!-- choose league -->
                   <div class="clearfix"></div>
                </div>
+               <div class="clearfix"></div>
             </div>
+            <div class="clearfix"></div>
          </div>
+         <div class="clearfix"></div>
       </div>
+      <div class="clearfix"></div>
    </div>
    <!-- Page body content -->
 </div>
@@ -175,4 +185,29 @@
       });
     }
    }
+  
+  function ShowMoreCountry() {
+    var lastIndex = $("#lastIndex").val();
+      $.ajax({
+          type: "GET",
+          url: "{{url('get-next-item')}}",
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          data: {'lastIndex':lastIndex},
+          success: function(result)
+          {
+              $("#appendCountryList").append(result);
+              var nextIndex = parseInt(lastIndex) + parseInt(10);
+              $("#lastIndex").val(nextIndex);
+
+              var totalCountry = $("#totalCountry").val();
+              var currentCount = $("#lastIndex").val();
+              if(parseInt(currentCount) > parseInt(totalCountry)) {
+                  $("#ShowMore").hide();
+              }
+          }
+      });
+    
+  }
 </script>

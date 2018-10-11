@@ -8060,6 +8060,8 @@ input[type=file] {
     background: #fff;
     padding: 15px 0px;
     border-radius: 2px;
+    clear: both;
+    overflow: hidden;
 }
 
 .league_calendar {

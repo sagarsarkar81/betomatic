@@ -224,4 +224,5 @@ Route::post('/betfair-login-normal','BetFairController\loginController@BetfairLo
 Route::get('/sports','BetFairController\SportsTypesController@getSportsTypes');
 Route::get('/competitions','BetFairController\SportsTypesController@getAllCompetitions');
 //Route::get('/competitions','BetFairController\SportsTypesController@getCountries');
+Route::get('/get-next-item','BetFairController\SportsTypesController@getNextCountryName');
 ?>
