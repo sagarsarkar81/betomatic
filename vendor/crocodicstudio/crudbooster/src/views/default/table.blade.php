@@ -40,17 +40,8 @@
                       })
                   });
                 </script>
-                @if(Request::path() == 'admin/btg_leagues')
-                <a href="javascript:void(0)" onclick="SaveTopLeague()" id="btn_show_data" class="btn btn-sm btn-primary" title="Save Top League">
-                    <i class="fa fa-table"></i> Save Top League
-                  </a>
-                @endif
-                @if(Request::path() == 'admin/btg_events')
-                <a href="javascript:void(0)" onclick="SaveFeaturedMatchForToday()" id="btn_show_data" class="btn btn-sm btn-primary" title="Save Top League">
-                    <i class="fa fa-table"></i> Save Featured Match
-                  </a>
-                @endif  
-                                         
+
+                                            
                   <form id='form-table' method='post' action='{{CRUDBooster::mainpath("action-selected")}}'>
                   <input type='hidden' name='button_name' value=''/>
                   <input type='hidden' name='_token' value='{{csrf_token()}}'/>
@@ -427,7 +418,7 @@
               })
             })
             </script>
-            
+
             <!-- MODAL FOR EXPORT DATA-->
             <div class="modal fade" tabindex="-1" role="dialog" id='export-data'>
               <div class="modal-dialog">

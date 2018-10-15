@@ -147,4 +147,3 @@ class AdminController extends CBController {
 	}
 
 }
-?>
