@@ -28,25 +28,25 @@
             <li role="presentation" class="active" >
                <a href="#singles" aria-controls="singles" role="tab" data-toggle="tab">
                Singles
-                   <span class="betingSlipInfo  betingSlipInfoSingel " id="" data-original-title="" title="">
+                   <!--span class="betingSlipInfo  betingSlipInfoSingel " id="" data-original-title="" title="">
                      <i class="fa fa-info-circle" aria-hidden="true" data-original-title="" title=""></i>
                      <div class="betting_slip_info betting_slip_infosingle" data-original-title="" title="">
                       <ul id="SingleBetInfo">
                       </ul>
                     </div>
-                   </span>
+                   </span-->
                </a>
             </li>
             <li role="presentation">
                <a href="#combination" aria-controls="combination" role="tab" data-toggle="tab">
                Accumulator
-                   <span class="betingSlipInfo  " id="" data-original-title="" title="">
+                   <!--span class="betingSlipInfo  " id="" data-original-title="" title="">
                      <i class="fa fa-info-circle" aria-hidden="true" data-original-title="" title=""></i>
                      <div class="betting_slip_info betting_slip_infocombo" data-original-title="" title="">
                       <ul id="AccumulatorInfo">
                       </ul>
                     </div>
-                   </span>
+                   </span-->
                </a>
             </li>
             <div class="clearfix"></div>

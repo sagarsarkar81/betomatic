@@ -1,4 +1,4 @@
-<div id="whole_slip<?php echo $UniqueId; ?>">
+<div id="whole_slip @php echo $UniqueId; @endphp">
 <ul class="betingSlipBet betingSlipBetSingles">
     <li>
        <h4 data-toggle="tooltip" title="@php echo $homeTeam; @endphp | @php echo $awayTeam; @endphp">
@@ -19,12 +19,12 @@
          }
         @endphp
        </h4>
-       <p><?php //echo $CheckOddsValue[0][market]; ?></p>
-       <h3><?php //if(empty($BetFor)){ echo "--"; }else{ echo $BetFor; } ?> <span><?php //echo $CheckOddsValue[0][odds_value]; ?></span></h3>
-       <input class="betingSlipBetInput BetStake number-only validate[required]" onkeyup="BetStakeAmount(this.value,'<?php echo $UniqueId; ?>','<?php //echo $CheckOddsValue[0][odds_value]; ?>','<?php //echo $CheckOddsValue[0][odds_name]; ?>')"type="text" name="" />
-       <input  type="hidden" value="0" id="Payment<?php //echo $UniqueId; ?>" class="PotentialPayout"/>
+       <p>@php echo $BetType; @endphp</p>
+       <h3>@php if(empty($BetFor)){ echo "--"; }else{ echo $BetFor; } @endphp <span>@php echo $OddsValue; @endphp</span></h3>
+       <input class="betingSlipBetInput BetStake number-only validate[required]" onkeyup="BetStakeAmount(this.value,@php echo $UniqueId; @endphp,@php echo $OddsValue; @endphp,'@php echo $BetType; @endphp')" type="text" name="" />
+       <input  type="hidden" value="0" id="Payment <?php //echo $UniqueId; ?>" class="PotentialPayout"/>
     </li>
-    <li onclick="RemoveBetSlip('<?php echo $UniqueId; ?>','<?php //echo $CheckOddsValue[0][match_id]; ?>')"> x </li>
+    <li onclick="RemoveBetSlip(@php echo $UniqueId; @endphp,@php echo $MatchId; @endphp)"> x </li>
 </ul>
 <script>
 $('.number-only').on('input', function (event) {

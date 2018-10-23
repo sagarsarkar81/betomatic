@@ -104,14 +104,14 @@ Route::post('/scroll-league-list','SoccerOddsController@ScrollLeagueListLoad');
 Route::get('/soccer-odds-listing-page','SoccerOddsController@SoccerOddsListing');
 Route::post('/CheckOdds','SoccerOddsController@CheckOddsDetails');
 Route::post('/Remove-Odds-From-Session','SoccerOddsController@RemoveOddsFromSession');
-Route::post('/Stake-Value','SoccerOddsController@InputStakeValue');
-Route::post('/Place-Bet','SoccerOddsController@BetPlaceData');
+//Route::post('/Stake-Value','SoccerOddsController@InputStakeValue');
+//Route::post('/Place-Bet','SoccerOddsController@BetPlaceData');
 Route::get('/soccer-odds-testing','SoccerOddsController@SoccerOddsTesting');
 Route::get('/remove-total-betslip','SoccerOddsController@RemoveTotalBetslip');
 Route::post('/stake-accu-session','SoccerOddsController@StakeAccumulatorInSession');
 Route::post('/Place-Accumulator-Bet','SoccerOddsController@PlaceAccumulatorBet');
-Route::get('/single-bet-info','SoccerOddsController@SingleBetInfo');
-Route::get('/accumulator-bet-info','SoccerOddsController@AccumulatorBetInfo');
+//Route::get('/single-bet-info','SoccerOddsController@SingleBetInfo');
+//Route::get('/accumulator-bet-info','SoccerOddsController@AccumulatorBetInfo');
 Route::post('/check-minimum-stake','SoccerOddsController@CheckMinimumStake');
 Route::post('/minimum-combination','SoccerOddsController@MinimumCombination');
 Route::get('/set-featured-match','SoccerOddsController@SetFeaturedMatch');
@@ -228,4 +228,6 @@ Route::get('/get-next-item','BetFairController\SportsTypesController@getNextCoun
 Route::post('/CheckOdds','BetFairController\BetPlacingController@CheckOddsDetails');
 Route::get('/single-bet-info','BetFairController\BetPlacingController@SingleBetInfo');
 Route::get('/accumulator-bet-info','BetFairController\BetPlacingController@AccumulatorBetInfo');
+Route::post('/stake-value','BetFairController\BetPlacingController@InputStakeValue');
+Route::post('/place-bet','BetFairController\BetPlacingController@BetPlaceData');
 ?>

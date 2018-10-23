@@ -181,9 +181,9 @@ function SelectLangauge(SelectedLangauge)
 $(document).ready(function() {
 $("#BetComments").prop('disabled', true);
 $("#PlaceBet").css('pointer-events','none');
-SingleBetInfo();
-AccumulatorBetInfo();
-GetDetailsForSingleBet();
+//SingleBetInfo();
+//AccumulatorBetInfo();
+//GetDetailsForSingleBet();
 PageLoadCheckSession();
 });
 function NewsFeedCommentsLikes(PostId,CommnetsId,CommentedUserId)
@@ -495,12 +495,7 @@ $(document.body).on('click',".PlaceInBetSlip",function(){
     var MatchId = $(this).attr("MatchId");
     var BetFor = $(this).attr("BetFor");
     var UniqueId = $(this).attr("id");
-    var Bookmaker = $(this).attr("Bookmaker");
-    var MatchTime = $(this).attr("MatchTime");
     var BetType = $(this).attr("BetType");
-    var Market = $(this).attr("Market");
-    var ExtraOdds = $(this).attr("ExtraOdds");
-    var MatchIdArray = [];
 
     var OddsValue = $(this).attr("OddsValue");
     var homeTeam = $("#homeTeam").val();
@@ -522,7 +517,7 @@ $(document.body).on('click',".PlaceInBetSlip",function(){
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             //data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId,'Bookmaker':Bookmaker,'MatchTime':MatchTime,'BetType':BetType,'Market':Market,'ExtraOdds':ExtraOdds},
-            data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId, 'OddsValue':OddsValue,'homeTeam':homeTeam,'awayTeam':awayTeam},
+            data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId, 'OddsValue':OddsValue,'homeTeam':homeTeam,'awayTeam':awayTeam, 'BetType':BetType},
             success: function(result)
             {
                 //console.log(result);
@@ -677,14 +672,14 @@ function BetStakeAmount(StakeAmount,UniqueId,OddsValue,OddsType)
     {
         $.ajax({
             type: "POST",
-            url: "{{url('Stake-Value')}}",
+            url: "{{url('stake-value')}}",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: {'StakeAmount':StakeAmount,'UniqueId':UniqueId,'OddsValue':OddsValue,'OddsType':OddsType},
             success: function(result)
             {
-                //console.log(result);
+                console.log(result);
             }
         });
         var TotalPayout;
@@ -746,43 +741,57 @@ function PlaceBet()
     $.ajax({
             type: "POST",
             async: false,
-            url: "{{url('check-minimum-stake')}}",
+            url: "{{url('place-bet')}}",
             headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {'bet_type':bet_type},
+            data: {'BetComments':BetComments,'PrivacySettings':PrivacySettings},
             success: function(result)
             {
-                //console.log(result);
-                if(result == "error")
-                {
-                    swal({
-                        title: "Please provide minimum stake",
-                        html : true,
-                        type: "error",
-                        confirmButtonColor: "red",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                      });
-                    $("#display_confirmation_alert").hide();
-                }else{
-                    $.ajax({
-                          type: "POST",
-                          async: false,
-                          url: "{{url('Place-Bet')}}",
-                          headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                          },
-                          data: {'BetComments':BetComments,'PrivacySettings':PrivacySettings},
-                          success: function(result)
-                          {
-                              //console.log(result);
-                              location.reload();
-                          }
-                    });
-                }
+                console.log(result);
+                //location.reload();
             }
     });
+    // $.ajax({
+    //         type: "POST",
+    //         async: false,
+    //         url: "{{url('check-minimum-stake')}}",
+    //         headers: {
+    //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         data: {'bet_type':bet_type},
+    //         success: function(result)
+    //         {
+    //             //console.log(result);
+    //             if(result == "error")
+    //             {
+    //                 swal({
+    //                     title: "Please provide minimum stake",
+    //                     html : true,
+    //                     type: "error",
+    //                     confirmButtonColor: "red",
+    //                     closeOnConfirm: false,
+    //                     closeOnCancel: true
+    //                   });
+    //                 $("#display_confirmation_alert").hide();
+    //             }else{
+    //                 $.ajax({
+    //                       type: "POST",
+    //                       async: false,
+    //                       url: "{{url('Place-Bet')}}",
+    //                       headers: {
+    //                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //                       },
+    //                       data: {'BetComments':BetComments,'PrivacySettings':PrivacySettings},
+    //                       success: function(result)
+    //                       {
+    //                           //console.log(result);
+    //                           location.reload();
+    //                       }
+    //                 });
+    //             }
+    //         }
+    // });
 }
 /*************Accumulator bet section*******************/
 function SelectPrivacyForAccumulator(value)
@@ -963,31 +972,31 @@ function PlaceAccumulatorBet()
     });
 }
 /************for extra odds page*******************/
-function GetDetailsForSingleBet()
-{
-    $.ajax({
-       type: "GET",
-       async: false,
-       url: "{{url('get-details-single-bet')}}",
-       headers: {
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-       },
-       success: function(result)
-       {
-          //console.log(result.Payout);
-          if(result != '')
-          {
-              //var Data = JSON.parse(result);
-              //var Stake = Data.Stake;
-              //var payout = Data.Payout;
-              $("#TotalStake").html('');
-              $("#TotalStake").html(result.Stake.toFixed(2));
-              $("#TotalReturn").html('');
-              $("#TotalReturn").html(result.Payout.toFixed(2));
-          }
-       }
-   });
-}
+// function GetDetailsForSingleBet()
+// {
+//     $.ajax({
+//        type: "GET",
+//        async: false,
+//        url: "{{url('get-details-single-bet')}}",
+//        headers: {
+//          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//        },
+//        success: function(result)
+//        {
+//           //console.log(result.Payout);
+//           if(result != '')
+//           {
+//               //var Data = JSON.parse(result);
+//               //var Stake = Data.Stake;
+//               //var payout = Data.Payout;
+//               $("#TotalStake").html('');
+//               $("#TotalStake").html(result.Stake.toFixed(2));
+//               $("#TotalReturn").html('');
+//               $("#TotalReturn").html(result.Payout.toFixed(2));
+//           }
+//        }
+//    });
+// }
 function PageLoadCheckSession()
 {
     $.ajax({
