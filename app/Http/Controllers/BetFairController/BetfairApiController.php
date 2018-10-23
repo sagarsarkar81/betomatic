@@ -74,10 +74,10 @@ class BetfairApiController extends Controller
             $data['listCountriesRequestParams']->marketFilter->timeRange->from = $fromDate;
             $data['listCountriesRequestParams']->marketFilter->timeRange->to = $toDate;
             $data['listCountriesRequestParams']->marketFilter->marketTypes = ["MATCH_ODDS"];
+            
             $countryCode = getDataByCurl($url, $data, $this->session_token);
-
+            
             Cache::put('countryCode', $countryCode, 3);
-
             return $countryCode;
         }
     }

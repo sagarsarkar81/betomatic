@@ -16,6 +16,7 @@ class SportsTypesController extends BetfairApiController
         $details['competitions'] = $this->getAllCompetitionsApi();
         $details['eventByCountry'] = $this->getEventByCountry();
         $countryCode = $this->getCountryCode();
+        // aa($countryCode);
         $data['countCountry'] = count($countryCode);
         $details['countryCode'] = array_slice($countryCode,0,10, true);
         end($details['countryCode']);

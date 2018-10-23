@@ -225,4 +225,7 @@ Route::get('/sports','BetFairController\SportsTypesController@getSportsTypes');
 Route::get('/competitions','BetFairController\SportsTypesController@getAllCompetitions');
 //Route::get('/competitions','BetFairController\SportsTypesController@getCountries');
 Route::get('/get-next-item','BetFairController\SportsTypesController@getNextCountryName');
+Route::post('/CheckOdds','BetFairController\BetPlacingController@CheckOddsDetails');
+Route::get('/single-bet-info','BetFairController\BetPlacingController@SingleBetInfo');
+Route::get('/accumulator-bet-info','BetFairController\BetPlacingController@AccumulatorBetInfo');
 ?>

@@ -71,16 +71,30 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
                                         <div class="match_title_time"> 
                                         <span class="pre_match_time" data-original-title="" title="">{{ date("Y-m-d H:i", strtotime($matchValue->event->openDate)) }}</span>
-                                          <span class="pre_match_title" title="" data-original-title="{{ $matchDetailsValue[0]->runnerDetails[0]->selectionName }} | {{ $matchDetails->runnerDetails[2]->selectionName }}">
+                                        <input type="hidden" id="homeTeam" value="{{ $matchDetails->runnerDetails[0]->selectionName }}"/> 
+                                        <input type="hidden" id="awayTeam" value="{{ $matchDetails->runnerDetails[2]->selectionName }}"/>  
+                                        <span class="pre_match_title" title="" data-original-title="{{ $matchDetails->runnerDetails[0]->selectionName }} | {{ $matchDetails->runnerDetails[2]->selectionName }}">
                                           <a href="#">{{ $matchDetails->runnerDetails[0]->selectionName }} | {{ $matchDetails->runnerDetails[2]->selectionName }}</a></span>
                                         </div>
                                     </div>
                                     
                                     <div class="col-md-6 col-sm-6 col-xs-12" data-original-title="" title="">
                                         <ul class="League_odd_list">
-                                          <li><a id="" href="javascript:void(0);" data-original-title="" title="">{{ number_format($matchDetails->runnerDetails[0]->winRunnerOdds->decimal,2) }}</a></li>
-                                          <li><a id="" href="javascript:void(0);" data-original-title="" title="">{{ number_format($matchDetails->runnerDetails[1]->winRunnerOdds->decimal,2) }}</a></li>
-                                          <li><a id="" href="javascript:void(0);" data-original-title="" title="">{{ number_format($matchDetails->runnerDetails[2]->winRunnerOdds->decimal,2) }}</a></li>
+                                          <li>
+                                            <span>1</span>
+                                            <a id="@php echo $UniqueId = rand(10000,1000000); @endphp" href="javascript:void(0);" data-original-title="" title="" class="PlaceInBetSlip" MatchId="@php echo $matchValue->event->id; @endphp" BetFor="Home">{{ number_format($matchDetails->runnerDetails[0]->winRunnerOdds->decimal,2) }}
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <span>x</span>
+                                            <a id="@php echo $UniqueId = rand(10000,1000000); @endphp" href="javascript:void(0);" data-original-title="" title="" class="PlaceInBetSlip" MatchId="@php echo $matchValue->event->id; @endphp" BetFor="Draw">{{ number_format($matchDetails->runnerDetails[1]->winRunnerOdds->decimal,2) }}
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <span>2</span>
+                                            <a id="@php echo $UniqueId = rand(10000,1000000); @endphp" href="javascript:void(0);" data-original-title="" title="" class="PlaceInBetSlip" MatchId="@php echo $matchValue->event->id; @endphp" BetFor="Away">{{ number_format($matchDetails->runnerDetails[2]->winRunnerOdds->decimal,2) }}
+                                            </a>
+                                          </li>
                                         </ul>
                                     </div>
                                     <div class="clearfix"></div>
@@ -210,4 +224,48 @@
       });
     
   }
+
+// $(".PlaceInBetSlip").click(function(){
+//     var MatchId = $(this).attr("MatchId");
+//     var BetFor = $(this).attr("BetFor");
+//     var UniqueId = $(this).attr("id");
+//     var OddsValue = $(this).attr("OddsValue");
+//     var homeTeam = $("#homeTeam").html();
+//     var awayTeam = $("#awayTeam").html();
+//     if($("#"+UniqueId).hasClass('active'))
+//     {
+//         $("#"+UniqueId).removeClass('active');
+//         RemoveBetSlip(UniqueId);
+//     }
+//     else{
+//         $("#"+UniqueId).addClass('active');
+//         //$("#body_loader").show();
+//         $.ajax({
+//             type: "POST",
+//             url: "{{url('CheckOdds')}}",
+//             headers: {
+//               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             },
+//             data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId, 'OddsValue':OddsValue,'homeTeam':homeTeam,'awayTeam':awayTeam},
+//             success: function(result)
+//             {
+//                 //console.log(result);
+//                 $("#EmptyBetSlip").html('');
+//                 $("#BetSlip").append(result);
+//                 // $("#BetComments").prop('disabled', false);
+//                 //$("#PlaceBet").css('pointer-events','auto');
+//                 // $(".BetStake").each(function(){
+//                 //     var CheckStakeInput = $(this).val();
+//                 //     //alert(CheckStakeInput);
+//                 //     if(CheckStakeInput == '')
+//                 //     {
+//                 //         $("#PlaceBet").css('pointer-events','none');
+//                 //     }
+//                 // });
+//                 //$("#body_loader").hide();
+//             }
+//         });
+//     }
+
+// });
 </script>

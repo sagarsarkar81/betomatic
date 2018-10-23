@@ -501,6 +501,11 @@ $(document.body).on('click',".PlaceInBetSlip",function(){
     var Market = $(this).attr("Market");
     var ExtraOdds = $(this).attr("ExtraOdds");
     var MatchIdArray = [];
+
+    var OddsValue = $(this).attr("OddsValue");
+    var homeTeam = $("#homeTeam").val();
+    var awayTeam = $("#awayTeam").val();
+
     if($("#"+UniqueId).hasClass('active'))
     {
         $("#"+UniqueId).removeClass('active');
@@ -516,7 +521,8 @@ $(document.body).on('click',".PlaceInBetSlip",function(){
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId,'Bookmaker':Bookmaker,'MatchTime':MatchTime,'BetType':BetType,'Market':Market,'ExtraOdds':ExtraOdds},
+            //data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId,'Bookmaker':Bookmaker,'MatchTime':MatchTime,'BetType':BetType,'Market':Market,'ExtraOdds':ExtraOdds},
+            data: {'MatchId':MatchId,'BetFor':BetFor,'UniqueId':UniqueId, 'OddsValue':OddsValue,'homeTeam':homeTeam,'awayTeam':awayTeam},
             success: function(result)
             {
                 //console.log(result);
