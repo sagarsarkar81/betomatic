@@ -103,7 +103,7 @@ Route::post('/soccer-odds-listing-page','SoccerOddsController@SoccerOddsListing'
 Route::post('/scroll-league-list','SoccerOddsController@ScrollLeagueListLoad');
 Route::get('/soccer-odds-listing-page','SoccerOddsController@SoccerOddsListing');
 Route::post('/CheckOdds','SoccerOddsController@CheckOddsDetails');
-Route::post('/Remove-Odds-From-Session','SoccerOddsController@RemoveOddsFromSession');
+//Route::post('/Remove-Odds-From-Session','SoccerOddsController@RemoveOddsFromSession');
 //Route::post('/Stake-Value','SoccerOddsController@InputStakeValue');
 //Route::post('/Place-Bet','SoccerOddsController@BetPlaceData');
 Route::get('/soccer-odds-testing','SoccerOddsController@SoccerOddsTesting');
@@ -222,6 +222,7 @@ Route::get('/point-for-social-share','InviteFriend@pointForSocialShare');
 Route::post('/betfair-login','BetFairController\loginController@BetfairLogin');
 Route::post('/betfair-login-normal','BetFairController\loginController@BetfairLoginNormal');
 Route::get('/sports','BetFairController\SportsTypesController@getSportsTypes');
+/*********Integration of Betfair api*******************/
 Route::get('/competitions','BetFairController\SportsTypesController@getAllCompetitions');
 //Route::get('/competitions','BetFairController\SportsTypesController@getCountries');
 Route::get('/get-next-item','BetFairController\SportsTypesController@getNextCountryName');
@@ -230,4 +231,5 @@ Route::get('/single-bet-info','BetFairController\BetPlacingController@SingleBetI
 Route::get('/accumulator-bet-info','BetFairController\BetPlacingController@AccumulatorBetInfo');
 Route::post('/stake-value','BetFairController\BetPlacingController@InputStakeValue');
 Route::post('/place-bet','BetFairController\BetPlacingController@BetPlaceData');
+Route::post('/remove-odds-from-session','BetFairController\BetPlacingController@RemoveOddsFromSession');
 ?>
