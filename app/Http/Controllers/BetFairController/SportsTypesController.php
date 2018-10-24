@@ -13,6 +13,7 @@ class SportsTypesController extends BetfairApiController
     }
 
     public function getAllCompetitions() {
+        $request->session()->forget('BetSlip');
         $details['competitions'] = $this->getAllCompetitionsApi();
         $details['eventByCountry'] = $this->getEventByCountry();
         $countryCode = $this->getCountryCode();
