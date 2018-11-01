@@ -68,7 +68,7 @@
       </div>     
       
       
-      <!-- Recommended  slip start -->
+      <!-- Recommended  slip start -
       <div class="betingslip_main betingtab">
          <ul class="nav nav-tabs " role="tablist">
             <li role="presentation" class="active"><a href="#plays" aria-controls="plays" role="tab" data-toggle="tab">{{__('label.Recommended plays')}} </a></li>
@@ -151,8 +151,8 @@
             </div>
          </div>
       </div>
-      <!-- Recommended slip start -->
-      <!-- following section start -->
+       Recommended slip start -->
+      <!-- following section start 
       <div class="bestoffer_wrap">
          <h3>{{__('label.Best Offer')}}</h3>
          <div class="offer_section">
@@ -194,6 +194,20 @@
            </ul>
         </div-->
       <!-- footer design end-->
+
+
+      <!-- Ad list -->
+
+      <div class="ad_item">
+        <h2> Branding </h2>
+        <div class="ad_holder">
+          <iframe width="100%" scrolling='no' frameBorder='0' style='padding:0px; margin:0px; border:0px;border-style:none;border-style:none;' width='150' height='100' src="https://wlpinnacle.adsrv.eacdn.com/I.ashx?btag=a_18616b_11808c_&affid=17720&siteid=18616&adid=11808&c=" ></iframe>
+        </div>
+         <div class="ad_holder">
+          <iframe width="100%" scrolling='no' frameBorder='0' style='padding:0px; margin:0px; border:0px;border-style:none;border-style:none;' width='150' height='100' src="https://wlpinnacle.adsrv.eacdn.com/I.ashx?btag=a_18616b_11808c_&affid=17720&siteid=18616&adid=11808&c=" ></iframe>
+        </div>
+      </div>
+
 
 
    </div>

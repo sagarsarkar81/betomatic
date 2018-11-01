@@ -88,6 +88,7 @@ video {
     outline: none !important;
 }
 
+
 /* HTML5 display-role reset for older browsers */
 
 button:active,
@@ -155,9 +156,12 @@ table {
     overflow-x: hidden;
 }
 
+
 /*-------------------------------*/
 
+
 /*     Sidebar nav styles        */
+
 
 /*-------------------------------*/
 
@@ -746,7 +750,7 @@ ul.nav.nav-tabs {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 49%, rgba(241, 241, 241, 1) 49%, rgba(241, 241, 241, 1) 51%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
 }
 
@@ -760,7 +764,7 @@ ul.nav.nav-tabs {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, rgba(242, 255, 219, 1) 0%, rgba(161, 213, 79, 1) 50%, rgba(131, 188, 39, 0.9) 50%, rgba(209, 255, 124, 1) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ffdb', endColorstr='#d1ff7c', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f2ffdb', endColorstr='#d1ff7c', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
 }
 
@@ -774,7 +778,7 @@ ul.nav.nav-tabs {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, rgba(255, 215, 209, 1) 0%, rgba(232, 108, 87, 0.7) 50%, rgba(237, 158, 144, 0.7) 50%, rgba(234, 40, 3, 0.7) 50%, rgba(255, 153, 132, 1) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd7d1', endColorstr='#ff9984', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffd7d1', endColorstr='#ff9984', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
 }
 
@@ -788,7 +792,7 @@ ul.nav.nav-tabs {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, rgb(246, 246, 247) 0%, rgba(229, 235, 238, 1) 50%, rgba(73, 104, 124, 1) 50%, rgba(119, 143, 158, 0.7) 50%, rgba(245, 247, 249, 1) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
 }
 
@@ -4433,6 +4437,7 @@ a.dropdown-toggle {
     width: 300px;
 }
 
+
 /* League list section  */
 
 .League_list_wrap {
@@ -4825,6 +4830,7 @@ ul.League_odd_list {
     position: relative;
 }
 
+
 /* -- ------------------shop section start (18-9-17)--------------------     -- */
 
 .shop_section {
@@ -5062,7 +5068,9 @@ ul.League_odd_list {
     transition: all 0.4s ease-in-out 0s;
 }
 
+
 /* -- ------------------shop section end--------------------  -- */
+
 
 /* -- ------------------Academy section start (19-9-17)--------------------     -- */
 
@@ -5500,7 +5508,9 @@ ul.League_odd_list {
     padding: 15px;
 }
 
+
 /* -- ------------------Academy section end (19-9-17)--------------------     -- */
+
 
 /* -- ------------------// All Game section start //--------------------     -- */
 
@@ -5595,7 +5605,9 @@ ul.League_odd_list {
     color: #fff;
 }
 
+
 /* -- ------------------// All Game section end //--------------------     -- */
+
 
 /* -- ------------------// ShopCart section end //--------------------     -- */
 
@@ -5961,6 +5973,7 @@ ul.League_odd_list {
     width: 30px;
 }
 
+
 /* -- ------------------// ShopCartWrap section end //--------------------     -- */
 
 .trending_comment_wrap {
@@ -6079,6 +6092,7 @@ ul.League_odd_list {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 
 /****************** cart page start **************************/
 
@@ -6256,6 +6270,7 @@ button.addTocart {
     cursor: pointer;
 }
 
+
 /* magnifying glass icon */
 
 .zoom:after {
@@ -6348,7 +6363,9 @@ button.addTocart {
     display: block !important;
 }
 
+
 /****************** cart page start **************************/
+
 
 /* --------- New betting slip design -------- */
 
@@ -6681,7 +6698,9 @@ span.slip_count {
     text-transform: capitalize;
 }
 
+
 /* --------- New betting slip design -------- */
+
 
 /* ----------- ismail start ----------------- */
 
@@ -6775,7 +6794,9 @@ span.slip_count {
     text-decoration: none;
 }
 
+
 /* ----------- ismail End ----------------- */
+
 
 /* ----------- gaurav(09.10.2017) notification,header dropdown style start ----------------- */
 
@@ -7288,7 +7309,9 @@ ul.btnnavbr .dropdown.open .dropdown-menu {
     }
 }
 
+
 /* ----------- gaurav End ----------------- */
+
 
 /* ---------- Message section desing ---------- */
 
@@ -7589,6 +7612,7 @@ ul.btnnavbr .dropdown.open .dropdown-menu {
     display: inline-block;
     margin: 0px 5px;
 }
+
 
 /* ---------- Message section desing ---------- */
 
@@ -8035,6 +8059,7 @@ input[type=file] {
     border-radius: 2px !important;
 }
 
+
 /*  -------------------// New section_css 29.01.2018   //--------------------- */
 
 .game_heading {
@@ -8146,6 +8171,7 @@ th.next {
 .top_league_wrap ul li a span {
     margin-right: 5px;
 }
+
 
 /*.top_league_wrap ul li:first-child a{
     border-bottom: 1px solid #ccc;
@@ -8739,6 +8765,7 @@ li.currency_holder {
     top: 50%;
 }
 
+
 /*  -------------------// New section_css end  //--------------------- */
 
 table.crud-table.table.table-bordered.table-striped.table-hover.dataTable.js-exportable {
@@ -8936,6 +8963,7 @@ li.dropdown.betfair_connect a i:nth-child(2) {
     font-size: 30px;
 }
 
+
 /* ----------------// ...Swedish language Start... //----------------- */
 
 .bog_swe .leaderboard_contentRight li {
@@ -8950,7 +8978,9 @@ li.dropdown.betfair_connect a i:nth-child(2) {
     font-size: 13px !important;
 }
 
+
 /* ----------------// ...Swedish language end... //----------------- */
+
 
 /* moz */
 
@@ -8960,7 +8990,9 @@ li.dropdown.betfair_connect a i:nth-child(2) {
     }
 }
 
+
 /* webkit */
+
 
 /* -- ------------------ //       Respensive design start  // --------------------     -- */
 
@@ -9627,6 +9659,7 @@ li.dropdown.betfair_connect a i:nth-child(2) {
     }
 }
 
+
 /* -- ------------------ //       Respensive design end  // --------------------     -- */
 
 .copybox {
@@ -9666,4 +9699,24 @@ li.dropdown.betfair_connect a i:nth-child(2) {
 
 .rember_me {
     font-size: 14px;
+}
+
+.ad_item h2 {
+    font-size: 20px;
+    padding: 14px 0px;
+    border-bottom: 1px solid #b3b3b3;
+    margin-bottom: 10px;
+    color: #193553;
+    font-weight: 600;
+}
+
+.ad_holder iframe {
+    height: 245px;
+}
+
+.ad_holder {
+    height: 239px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
