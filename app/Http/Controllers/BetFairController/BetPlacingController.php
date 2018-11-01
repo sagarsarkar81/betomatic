@@ -171,6 +171,25 @@ class BetPlacingController extends Controller
             echo "success";
         }
     }
+
+    public function RemoveOddsFromSession(Request $request)
+    {
+        $BetSlipId = $request->input('BetSlipId');
+        $GetSessionBetSlipData = Session::get('BetSlip');
+        foreach($GetSessionBetSlipData as $key=>$value)
+        {
+            if($value['betslip_id'] == $BetSlipId)
+            {
+                unset($GetSessionBetSlipData[$key]);
+                $PostId = $value['copied_post_id'];
+                Session::put('BetSlip', $GetSessionBetSlipData);Session::save();
+            }
+        }
+        aa(Session::get('BetSlip'));
+        //echo $PostId;
+        //echo "<pre>";
+        //print_r($GetSessionBetSlipData);
+    }
 }
 
 ?>

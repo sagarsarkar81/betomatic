@@ -13,11 +13,10 @@ class SportsTypesController extends BetfairApiController
     }
 
     public function getAllCompetitions() {
-        $request->session()->forget('BetSlip');
+        Session::forget('BetSlip');
         $details['competitions'] = $this->getAllCompetitionsApi();
         $details['eventByCountry'] = $this->getEventByCountry();
         $countryCode = $this->getCountryCode();
-        // aa($countryCode);
         $data['countCountry'] = count($countryCode);
         $details['countryCode'] = array_slice($countryCode,0,10, true);
         end($details['countryCode']);

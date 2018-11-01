@@ -608,7 +608,7 @@ function RemoveBetSlip(BetslipId,MatchId)
         AccumultaorOdds();
         $.ajax({
             type: "POST",
-            url: "{{url('Remove-Odds-From-Session')}}",
+            url: "{{url('remove-odds-from-session')}}",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -665,6 +665,7 @@ function PotentialReturn(StakeAmount,UniqueId,OddsValue,OddsType)
         $("#PlaceBet").css('pointer-events','none');
     }
 }
+
 function BetStakeAmount(StakeAmount,UniqueId,OddsValue,OddsType)
 {
     PotentialReturn(StakeAmount,UniqueId,OddsValue,OddsType);
@@ -679,7 +680,7 @@ function BetStakeAmount(StakeAmount,UniqueId,OddsValue,OddsType)
             data: {'StakeAmount':StakeAmount,'UniqueId':UniqueId,'OddsValue':OddsValue,'OddsType':OddsType},
             success: function(result)
             {
-                console.log(result);
+                //console.log(result);
             }
         });
         var TotalPayout;

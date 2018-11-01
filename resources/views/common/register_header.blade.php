@@ -57,12 +57,12 @@
                     </div>
                   </li>
 
-                  <li class="dropdown betfair_connect">
+                  <!--li class="dropdown betfair_connect">
                     <a data-toggle="modal" data-target="#open_betlogin" href="javascript:void(0);">
                         <i data-toggle="tooltip" data-placement="bottom" title="Connect" ><img width="30px" src="{{asset('assets/front_end/images/betfair.png')}}"/></i>
                     </a>
 
-                  </li>
+                  </li-->
 
                   <li class="dropdown top_icon drpdwnli">
                     <a href="javascript:void(0);" onclick="UnreadNotification()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
