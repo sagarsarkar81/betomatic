@@ -1,1 +1,0 @@
-{{ date("F, d Y", strtotime($value)) }}

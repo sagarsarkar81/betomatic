@@ -1065,21 +1065,21 @@ function PageLoadCheckSession()
         }
     });
 }
-function SetFeaturedMatch()
-{
-  $.ajax({
-      type: "GET",
-      url: "{{url('set-featured-match')}}",
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      //data: {'MatchId':MatchId},
-      success: function(result)
-      {
-          //console.log(result);
-          $("#FeaturedMatch").html('');
-          $("#FeaturedMatch").html(result);
-      }
-  });
-}
+// function SetFeaturedMatch()
+// {
+//   $.ajax({
+//       type: "GET",
+//       url: "{{url('set-featured-match')}}",
+//       headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//       },
+//       //data: {'MatchId':MatchId},
+//       success: function(result)
+//       {
+//           //console.log(result);
+//           $("#FeaturedMatch").html('');
+//           $("#FeaturedMatch").html(result);
+//       }
+//   });
+// }
 </script>
