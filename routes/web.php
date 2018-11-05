@@ -1,4 +1,6 @@
 <?php
+
+
 Route::get('/','LandingPageController@index');
 Route::get('/login','LandingPageController@index');
 Route::post('/CheckUserName','LandingPageController@check_username');
@@ -114,7 +116,7 @@ Route::post('/Place-Accumulator-Bet','SoccerOddsController@PlaceAccumulatorBet')
 //Route::get('/accumulator-bet-info','SoccerOddsController@AccumulatorBetInfo');
 Route::post('/check-minimum-stake','SoccerOddsController@CheckMinimumStake');
 Route::post('/minimum-combination','SoccerOddsController@MinimumCombination');
-Route::get('/set-featured-match','SoccerOddsController@SetFeaturedMatch');
+//Route::get('/set-featured-match','SoccerOddsController@SetFeaturedMatch');
 /*****accumulator*********/
 Route::post('/check-accumulator-odds','SoccerOddsController@CheckAccumulatorOdds');
 Route::post('/check-same-matchId','SoccerOddsController@CheckSameMatchId');

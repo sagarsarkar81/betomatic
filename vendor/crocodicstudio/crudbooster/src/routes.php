@@ -1,6 +1,5 @@
 <?php
 
-
 /* ROUTER FOR API GENERATOR */
 $namespace = '\crocodicstudio\crudbooster\controllers';
 
