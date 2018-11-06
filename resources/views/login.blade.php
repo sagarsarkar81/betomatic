@@ -33,7 +33,7 @@ $(document).ready(function(){
 				  	 <div class="col-md-6">
 				  	   <div class="login_content_left">
 				  	 	<p>{{__('label.Create your account and experience the best platform for betters')}}</p>
-				  	 	<a href="javascript:void(0);" data-toggle="modal"  onclick="openform()">{{__('label.Create Account')}}</a>
+				  	 	<a href="" data-toggle="modal" data-target="#registration_modal">{{__('label.Create Account')}}</a>
 				  	   </div> 	
 				  	 </div>
 				  	 <div class="col-md-6">
@@ -242,7 +242,7 @@ $(document).ready(function(){
 		           	 <div class="col-md-6 col-sm-6 col-xs-6">
 		           	  <a href="javascript:void(0);" data-dismiss="modal" onclick="ResetForm()">{{__('label.Cancel')}}</a>
 		           	 </div>
-                     <input type="hidden" name="_token" id="csrf_token" value="{{ csrf_token() }}"/>
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 		           	 <div class="col-md-6 col-sm-6 col-xs-6">
 		           	  <button class="submit" type="submit" id="register">{{__('label.Create')}}</button>
 		             </div>
@@ -302,7 +302,7 @@ $(document).ready(function(){
 		           	 <div class="col-md-6 col-sm-6 col-xs-6">
 		           	  <a href="javascript:void(0);" data-dismiss="modal" onclick="ResetFormForgotPassword()">{{__('label.Cancel')}}</a>
 		           	 </div>
-                     <input type="hidden" name="_token" id="csrf_token" value="{{ csrf_token() }}"/>
+                     <input type="hidden" name="_token"  value="{{ csrf_token() }}"/>
 		           	 <div class="col-md-6 col-sm-6 col-xs-6">
 		           	  <button class="submit" type="submit" id="forgotpass_btn">{{__('label.Submit')}}</button>
 		             </div>
@@ -330,9 +330,9 @@ $(document).ready(function(){
 		$('.alert-success').fadeOut('fast');
 	}, 4000);
 });
-function openform(){
-	$('#registration_modal').modal('show');
-}
+// function openform(){
+// 	$('#registration_modal').modal('show');
+// }
 /*function check_validation()
 {
     $('#registration').validationEngine();
@@ -357,7 +357,6 @@ function checkUserName()
         } else {
             if((/^[A-Za-z]+$/.test(user_name)) || (/^[0-9a-zA-Z]+$/.test(user_name)))
             {
-                //var csrf_token = $("#csrf_token").val();
                 $.ajax({
                     type: "POST",
                     url: "{{url('CheckUserName')}}",

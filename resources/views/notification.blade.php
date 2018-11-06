@@ -21,54 +21,54 @@
                         $EncryptedKey = SetEncodedId($value[id]);
                ?>
                <div class="ns-c-notifrow <?php if($value['detail_seen_status'] == 0){ echo "unread"; }?>">
-                 <div class="ns-c-notifrow-date"><?php echo date("j M Y",strtotime($value[creation_date])); ?></div>
+                 <div class="ns-c-notifrow-date"><?php echo date("j M Y",strtotime($value['creation_date'])); ?></div>
                  <div class="ns-c-notifrow-event">
                         <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
-                            <?php if($value[incident_type] == 'Likes') { ?>
+                            <?php if($value['incident_type'] == 'Likes') { ?>
                             <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-thumbs-up"></i>
-                            <?php }elseif($value[incident_type] == 'Comment'){ ?>
+                            <?php }elseif($value['incident_type'] == 'Comment'){ ?>
                             <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-commenting"></i>
-                            <?php }elseif($value[incident_type] == 'Post'){ ?>
+                            <?php }elseif($value['incident_type'] == 'Post'){ ?>
                             <a href="{{url('trending')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-thumbs-up"></i>
-                            <?php }elseif($value[incident_type] == 'Post Comment'){ ?>
+                            <?php }elseif($value['incident_type'] == 'Post Comment'){ ?>
                             <a href="{{url('trending')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-commenting"></i>
-                            <?php }elseif($value[incident_type] == 'Comment Like'){ ?>
+                            <?php }elseif($value['incident_type'] == 'Comment Like'){ ?>
                             <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-thumbs-up"></i>
-                            <?php }elseif($value[incident_type] == 'Reply'){ ?>
+                            <?php }elseif($value['incident_type'] == 'Reply'){ ?>
                             <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-reply-all"></i>
                             <?php }else{ ?>
                             <a href="{{url('follow-following')}}/<?php echo $EncryptedKey; ?>">
                             <i class="fa fa-user-plus"></i>
                             <?php } ?>
-                            <div class="ns-c-notifrow-event-msg"><span><?php echo $value[text]; ?></span></div>
+                            <div class="ns-c-notifrow-event-msg"><span><?php echo $value['text']; ?></span></div>
                         </a>
-                        <!--<?php if($value[incident_type] == 'Likes') { ?>
+                        <!--<?php if($value['incident_type'] == 'Likes') { ?>
                         <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                         <i class="fa fa-thumbs-up"></i>
                         </a>
-                        <?php }elseif($value[incident_type] == 'Comment'){ ?>
+                        <?php }elseif($value['incident_type'] == 'Comment'){ ?>
                         <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                         <i class="fa fa-commenting"></i>
                         </a>
-                        <?php }elseif($value[incident_type] == 'Post'){ ?>
+                        <?php }elseif($value['incident_type'] == 'Post'){ ?>
                         <a href="{{url('trending')}}/<?php echo $EncryptedKey; ?>">
                         <i class="fa fa-thumbs-up"></i>
                         </a>
-                        <?php }elseif($value[incident_type] == 'Post Comment'){ ?>
+                        <?php }elseif($value['incident_type'] == 'Post Comment'){ ?>
                         <a href="{{url('trending')}}/<?php echo $EncryptedKey; ?>">
                         <i class="fa fa-commenting"></i>
                         </a>
-                        <?php }elseif($value[incident_type] == 'Comment Like'){ ?>
+                        <?php }elseif($value['incident_type'] == 'Comment Like'){ ?>
                         <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                         <i class="fa fa-thumbs-up"></i>
                         </a>
-                        <?php }elseif($value[incident_type] == 'Reply'){ ?>
+                        <?php }elseif($value['incident_type'] == 'Reply'){ ?>
                         <a href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
                         <i class="fa fa-reply-all">
                         </a>
@@ -77,7 +77,7 @@
                         <i class="fa fa-user-plus"></i>
                         </a>
                         <?php } ?>
-                        <div class="ns-c-notifrow-event-msg"><span><?php echo $value[text]; ?></span></div-->
+                        <div class="ns-c-notifrow-event-msg"><span><?php echo $value['text']; ?></span></div-->
                  </div>
                </div>
                <?php 

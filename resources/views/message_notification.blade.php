@@ -25,27 +25,27 @@ if(!empty($ListOfFriend))
 {
     foreach($ListOfFriend as $Key=>$Value)
     {
-        $time = strtotime($Value[creation_date]);
-        $EncryptedKey = SetEncodedId($Value[id]);
+        $time = strtotime($Value['creation_date']);
+        $EncryptedKey = SetEncodedId($Value['id']);
 ?>
 <li>
-    <!--a class="aflx" href="{{url('visit-message-page')}}/<?php echo $Value[id]; ?>" onclick="VisitMessagePage('<?php echo $Value[id]; ?>')"-->
+    <!--a class="aflx" href="{{url('visit-message-page')}}/<?php echo $Value['id']; ?>" onclick="VisitMessagePage('<?php echo $Value['id']; ?>')"-->
     <a class="aflx" href="{{url('visit-message-page')}}/<?php echo $EncryptedKey; ?>">
         <div class="dp-profile-lft">
         <?php
-        if(empty($Value[profile_picture]))
+        if(empty($Value['profile_picture']))
         {
         ?>
             <img src="{{asset('assets/front_end/images/avatar.jpg')}}" alt="Sample Profile Picture"/>
         <?php 
         }else{
         ?>
-            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$Value[profile_picture]; ?>" alt="Sample Profile Picture"/>
+            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$Value['profile_picture']; ?>" alt="Sample Profile Picture"/>
         <?php } ?>
         </div>
         <div class="dp-drp-rt msgbx">
-            <div class="dp-drp-rt-top"><?php echo $Value[name]; ?></div>
-            <div class="dp-drp-rt-msgbx-txt"><?php if(empty($Value[message_text])) { echo "No message"; }else{ $MessageText = $Value[message_text]; $description = (strlen($MessageText) > 3) ? substr($MessageText,0,20).' ....' : $MessageText; echo $description; } ?></div>
+            <div class="dp-drp-rt-top"><?php echo $Value['name']; ?></div>
+            <div class="dp-drp-rt-msgbx-txt"><?php if(empty($Value['message_text'])) { echo "No message"; }else{ $MessageText = $Value['message_text']; $description = (strlen($MessageText) > 3) ? substr($MessageText,0,20).' ....' : $MessageText; echo $description; } ?></div>
             <div class="dp-drp-rt-time"><?php echo humanTiming($time).' ago'; ?></div>
         </div>
     </a>

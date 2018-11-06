@@ -103,14 +103,14 @@ use App\Users;
                                 $GetNameOfFriends = Users::select('id','name','profile_picture')->where('id',$Value['to_user_id'])->get()->toArray();
                         ?>
                         <div class="Search_list">
-                            <?php if(!empty($GetNameOfFriends[0][profile_picture])) { ?>
-                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetNameOfFriends[0][profile_picture]; ?>"/>
+                            <?php if(!empty($GetNameOfFriends[0]['profile_picture'])) { ?>
+                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetNameOfFriends[0]['profile_picture']; ?>"/>
                             <?php } else{ ?>
                             <img src="{{asset('assets/front_end/images/avatar.jpg')}}" />
                             <?php } ?>
-                            <!--a href="{{url('visit-message-page')}}<?php echo '/'.$GetNameOfFriends[0][id]; ?>"-->
-                            <a href="javascript:void(0);" onclick="VisitMessagePage('<?php echo $GetNameOfFriends[0][id]; ?>')">  
-                            <?php echo $GetNameOfFriends[0][name]; ?>
+                            <!--a href="{{url('visit-message-page')}}<?php echo '/'.$GetNameOfFriends[0]['id']; ?>"-->
+                            <a href="javascript:void(0);" onclick="VisitMessagePage('<?php echo $GetNameOfFriends[0]['id']; ?>')">  
+                            <?php echo $GetNameOfFriends[0]['name']; ?>
                             <span>1 Follower</span>
                             </a>
                         </div>

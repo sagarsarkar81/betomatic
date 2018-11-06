@@ -46,28 +46,28 @@ $(document).ready(function(){
       <div class="col-md-3 col-sm-3">
          <div class="profile_leftbar_wrap">
             <div class="user_detils">
-                <?php if($FetchUserData[0][profile_picture] != ''){ ?>
-               <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$FetchUserData[0][profile_picture]; ?>"/>
+                <?php if($FetchUserData[0]['profile_picture'] != ''){ ?>
+               <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$FetchUserData[0]['profile_picture']; ?>"/>
                <?php }else{ ?>
                <img src="{{asset('assets/front_end/images/avatar.jpg')}}" />
                <?php } ?>
-               <h2><?php echo $FetchUserData[0][name]; ?></h2>
+               <h2><?php echo $FetchUserData[0]['name']; ?></h2>
                <?php
-               $GetCountryName = Countries::where('id',$FetchUserData[0][country_id])->get()->toArray();
+               $GetCountryName = Countries::where('id',$FetchUserData[0]['country_id'])->get()->toArray();
                if(!empty($GetCountryName)) { ?>
-               <h5><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo $GetCountryName[0][name]; ?></h5>
+               <h5><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo $GetCountryName[0]['name']; ?></h5>
                <?php } ?>
                <?php
-               if(empty($FetchUserData[0][id]))
+               if(empty($FetchUserData[0]['id']))
                {
                ?>
                <p>No favourite team selected</p>
                <?php }else{
-                   $GetFavouriteTeam = user_profiles::where('user_id',$FetchUserData[0][id])->get()->toArray();
+                   $GetFavouriteTeam = user_profiles::where('user_id',$FetchUserData[0]['id'])->get()->toArray();
                    //print_r($GetFavouriteTeam);
                    if(!empty($GetFavouriteTeam))
                    {
-                       $FavouriteTeam = json_decode($GetFavouriteTeam[0][favourite_teams],true);
+                       $FavouriteTeam = json_decode($GetFavouriteTeam[0]['favourite_teams'],true);
                        if(!empty($FavouriteTeam))
                        {
                            foreach($FavouriteTeam as $TeamValue)
@@ -78,7 +78,7 @@ $(document).ready(function(){
                                     foreach($TeamName as $Team)
                                     {
                                ?>
-                               <p><?php echo $Team[team_name];?></p>
+                               <p><?php echo $Team['team_name'];?></p>
                                <?php         
                                     }
                                }
@@ -95,7 +95,7 @@ $(document).ready(function(){
                ?>
             </div>
             <div class="follow_following">
-               <a href="{{url('visitors-follow-following')}}/<?php echo $FetchUserData[0][id]; ?>">
+               <a href="{{url('visitors-follow-following')}}/<?php echo $FetchUserData[0]['id']; ?>">
                <?php if(!empty($CountFollowers)) { ?>
                <span><img src="{{asset('assets/front_end/images/follow_img.png')}}"/>Followers <?php echo $CountFollowers; ?></span>
                <?php } else { ?>
@@ -112,12 +112,12 @@ $(document).ready(function(){
             <div class="user_visit_follow">
                 <?php 
                 $user_id = Session::get('user_id');
-                $UserFollowData = follow_users::where('from_userid',$user_id)->where('to_user_id',$FetchUserData[0][id])->get()->toArray();
+                $UserFollowData = follow_users::where('from_userid',$user_id)->where('to_user_id',$FetchUserData[0]['id'])->get()->toArray();
                 ?>
                 <?php if(empty($UserFollowData)) { ?>
-                   <button type="button" id="follow<?php echo $FetchUserData[0][id]; ?>" class="user_follow active" onclick="FollowUser('<?php echo $FetchUserData[0][id];?>','<?php echo $FetchUserData[0][name];?>')">Follow</button>
+                   <button type="button" id="follow<?php echo $FetchUserData[0]['id']; ?>" class="user_follow active" onclick="FollowUser('<?php echo $FetchUserData[0]['id'];?>','<?php echo $FetchUserData[0]['name'];?>')">Follow</button>
                 <?php }else{ ?>
-                   <button type="button" id="follow<?php echo $FetchUserData[0][id]; ?>" class="user_follow active" onclick="FollowUser('<?php echo $FetchUserData[0][id];?>','<?php echo $FetchUserData[0][name];?>')">Unfollow</button>
+                   <button type="button" id="follow<?php echo $FetchUserData[0]['id']; ?>" class="user_follow active" onclick="FollowUser('<?php echo $FetchUserData[0]['id'];?>','<?php echo $FetchUserData[0]['name'];?>')">Unfollow</button>
                 <?php } ?>
             </div>
             
@@ -166,7 +166,7 @@ $(document).ready(function(){
             </div>
             <?php 
             $user_id = Session::get('user_id');
-            if($FetchUserData[0][id] == $user_id) { ?> 
+            if($FetchUserData[0]['id'] == $user_id) { ?> 
             <div class="profile_update">
                <a href="{{url('edit-profile')}}"> Update Profile </a>
             </div>
@@ -251,12 +251,12 @@ $(document).ready(function(){
                <div role="tabpanel" class="tab-pane active" id="information">
                   <div class="information">
                      <p></p>
-                     <p>Bio :  <span><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0][bio]; } else{ echo "No content"; } ; ?></span></p>
+                     <p>Bio :  <span><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0]['bio']; } else{ echo "No content"; } ; ?></span></p>
                      <!--p>Gander :  <span>Male</span></p-->
                      <p> years of Member : <span>3 Years</span></p>
                      <?php 
                      $user_id = Session::get('user_id');
-                     if($FetchUserData[0][id] == $user_id) 
+                     if($FetchUserData[0]['id'] == $user_id) 
                      { 
                         if(empty($FetchProfileData)) 
                         { 
@@ -287,20 +287,20 @@ $(document).ready(function(){
                             { 
                                 foreach($GetAlbum as $Album)
                                 {
-                                    $ImagesInAlbum = photo_albums::where('album_id',$Album[id])->get()->toArray();
+                                    $ImagesInAlbum = photo_albums::where('album_id',$Album['id'])->get()->toArray();
                                     $CountImages = count($ImagesInAlbum);
                             ?>
                             <li>
                                <a href="javascript:void(0);" >
                                 <!--img src="{{asset('assets/front_end/images/Lighthouse.jpg')}}"/-->
-                                <?php if(empty($ImagesInAlbum[0][images])) { ?>
+                                <?php if(empty($ImagesInAlbum[0]['images'])) { ?>
                                     <img src="{{asset('assets/front_end/images/no_image.png')}}"/>
                                 <?php }else{ ?>
-                                    <a href="#" data-toggle="modal" data-target="#show_album_img<?php echo $Album[id]; ?>">
-                                    <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$ImagesInAlbum[0][images]; ?>"/>
+                                    <a href="#" data-toggle="modal" data-target="#show_album_img<?php echo $Album['id']; ?>">
+                                    <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$ImagesInAlbum[0]['images']; ?>"/>
                                 <?php } ?>
                                 <div class="album_description">
-                                  <p><i><?php echo $Album[album_description]; ?></i> <span><?php echo $CountImages; ?></span></p>
+                                  <p><i><?php echo $Album['album_description']; ?></i> <span><?php echo $CountImages; ?></span></p>
                                 </div>
                                </a>
                            </li>
@@ -312,7 +312,7 @@ $(document).ready(function(){
                     <div class="clearfix"></div>
                     <?php 
                     $user_id = Session::get('user_id');
-                    if($FetchUserData[0][id] == $user_id) { 
+                    if($FetchUserData[0]['id'] == $user_id) { 
                     ?> 
                     <a data-toggle="modal" data-target="#album_modal" href="#">Add album </a>
                     <?php } ?>
@@ -347,7 +347,7 @@ $(document).ready(function(){
                         {
                             foreach($FetchProfileData as $KeyFavourite=>$ValueFavourite)
                             {
-                                $GetImage = json_decode($ValueFavourite[favourite_sports],true);
+                                $GetImage = json_decode($ValueFavourite['favourite_sports'],true);
                                 if(!empty($GetImage))
                                 {
                                     foreach($GetImage as $keyImage=>$ValueImage)
@@ -359,8 +359,8 @@ $(document).ready(function(){
                                             {
                         ?>
                             <li>
-                             <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value[sports_image]; ?>"/>
-                             <h5><?php echo $value[sports_name]; ?></h5>
+                             <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value['sports_image']; ?>"/>
+                             <h5><?php echo $value['sports_name']; ?></h5>
                             </li>
                         <?php
                                             }
@@ -372,7 +372,7 @@ $(document).ready(function(){
                      </ul>
                      <?php 
                     $user_id = Session::get('user_id');
-                    if($FetchUserData[0][id] == $user_id) { ?> 
+                    if($FetchUserData[0]['id'] == $user_id) { ?> 
                      <a data-toggle="modal" data-target="#Favorite_Sports_modal" href="#">Add Favorite Sports </a>
                     <?php } ?>
                   </div>
@@ -389,7 +389,7 @@ $(document).ready(function(){
                             //print_r($FetchProfileData);
                             foreach($FetchProfileData as $KeyPlayerTeam=>$ValuePlayerTeam)
                             {
-                                $GetImage = json_decode($ValuePlayerTeam[favourite_teams],true);
+                                $GetImage = json_decode($ValuePlayerTeam['favourite_teams'],true);
                                 if(!empty($GetImage))
                                 {
                                     foreach($GetImage as $keyImageName=>$ValueImageName)
@@ -401,8 +401,8 @@ $(document).ready(function(){
                                             {
                         ?>
                         <li>
-                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value[team_pics]; ?>"/>
-                          <h5><?php echo $value[team_name];?></h5>
+                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value['team_pics']; ?>"/>
+                          <h5><?php echo $value['team_name'];?></h5>
                         </li>
                         <?php
                                             }
@@ -430,7 +430,7 @@ $(document).ready(function(){
                             //print_r($FetchProfileData);
                             foreach($FetchProfileData as $KeyPlayer=>$ValuePlayer)
                             {
-                                $GetImage = json_decode($ValuePlayerTeam[favourite_players],true);
+                                $GetImage = json_decode($ValuePlayerTeam['favourite_players'],true);
                                 if(!empty($GetImage))
                                 {
                                     foreach($GetImage as $KeyPlayer=>$ValuePlayer)
@@ -442,8 +442,8 @@ $(document).ready(function(){
                                             {
                          ?>
                          <li>
-                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value[players_image]; ?>"/>
-                          <h5><?php echo $value[players_name];?></h5>
+                          <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$value['players_image']; ?>"/>
+                          <h5><?php echo $value['players_name'];?></h5>
                          </li>
                          <?php
                                             }
@@ -462,7 +462,7 @@ $(document).ready(function(){
                      <!--a data-toggle="modal" data-target="#Favorite_team_player_modal" href="#"><?php if(!empty($FetchProfileData)) { echo "Edit your Teams / Players"; }else{ echo "Add your Teams / Players"; } ?> </a-->
                     <?php 
                     $user_id = Session::get('user_id');
-                    if($FetchUserData[0][id] == $user_id) { ?> 
+                    if($FetchUserData[0]['id'] == $user_id) { ?> 
                      <a data-toggle="modal" data-target="#Favorite_team_player_modal" href="#"><?php echo "Add your Teams / Players"; ?> </a>
                     <?php } ?>
                   </div>
@@ -533,7 +533,7 @@ $(document).ready(function(){
        <form class="col-md-8 col-md-offset-2" id="BioUpdateModal" action="javascript:void(0);" autocomplete="off" enctype="multipart/form-data" onsubmit="BioModalFormSubmit()">
         <div class="form-group">
          <label>Enter your BIO</label>
-         <textarea rows="3" class="form-control" name="bio" id="biotext" placeholder="Write something about you"><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0][bio]; } else{ echo "No Content"; }?></textarea>
+         <textarea rows="3" class="form-control" name="bio" id="biotext" placeholder="Write something about you"><?php if(!empty($FetchProfileData)) { echo $FetchProfileData[0]['bio']; } else{ echo "No Content"; }?></textarea>
         </div>
         <?php if(empty($FetchProfileData)) { ?>
          <button type="submit" class="btn">Save</button>
@@ -599,13 +599,13 @@ $(document).ready(function(){
     foreach($GetAlbum as $Album)
     {
     ?>
-    <div id="show_album_img<?php echo $Album[id];?>" data-easein="expandIn" class="registration_modal modal fade show_album_img" role="dialog">
+    <div id="show_album_img<?php echo $Album['id'];?>" data-easein="expandIn" class="registration_modal modal fade show_album_img" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><?php echo $Album[album_description]; ?></h4>
+            <h4 class="modal-title"><?php echo $Album['album_description']; ?></h4>
           </div>
           <div class="modal-body">
                <!-- Album view start -->
@@ -613,12 +613,12 @@ $(document).ready(function(){
                           <div class="show_album_images">
                             <ul>
                             <?php 
-                            $ImagesInAlbum = photo_albums::where('album_id',$Album[id])->get()->toArray();
+                            $ImagesInAlbum = photo_albums::where('album_id',$Album['id'])->get()->toArray();
                             foreach($ImagesInAlbum as $Images)
                             {
                             ?>
                               <li>
-                               <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$Images[images]; ?>"/>
+                               <img src="{{asset('assets/front_end/images/album')}}<?php echo '/'.$Images['images']; ?>"/>
                                
                                <div class="dropdown feed_more open" style="display: none;">
                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
@@ -664,7 +664,7 @@ $(document).ready(function(){
                                      <div class="percent" id="percentAlbumImage2">0%</div >
                                   </div>
                               </div>
-                              <button type="submit" id="SaveAlbum2" style="display: none;" class="btn album_upload" onclick="SubmitImageForm2(<?php echo $Album[id]; ?>)">Save Album</button>
+                              <button type="submit" id="SaveAlbum2" style="display: none;" class="btn album_upload" onclick="SubmitImageForm2(<?php echo $Album['id']; ?>)">Save Album</button>
                         </form-->
                         </div>
                       <!-- Album view start -->

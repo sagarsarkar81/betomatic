@@ -205,7 +205,7 @@
              $('.alert-success').fadeOut('fast');
        }, 4000);
        NeswFeedFunction();
-       SetFeaturedMatch();
+       //SetFeaturedMatch();
    });
    function NeswFeedFunction()
    {
