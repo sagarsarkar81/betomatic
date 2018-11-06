@@ -71,7 +71,10 @@
            <iframe width="100%" scrolling='no' frameBorder='0' style='padding:0px; margin:0px; border:0px;border-style:none;border-style:none;' width='150' height='100' src="https://wlpinnacle.adsrv.eacdn.com/I.ashx?btag=a_18616b_11808c_&affid=17720&siteid=18616&adid=11808&c=" ></iframe>
         </div>
         <div class="ad_holder">
-           <iframe width="100%" scrolling='no' frameBorder='0' style='padding:0px; margin:0px; border:0px;border-style:none;border-style:none;' width='150' height='100' src="https://wlpinnacle.adsrv.eacdn.com/I.ashx?btag=a_18616b_11808c_&affid=17720&siteid=18616&adid=11808&c=" ></iframe>
+          <iframe width="100%" scrolling='no' frameBorder='0' style='padding:0px; margin:0px; border:0px;border-style:none;border-style:none;' width='150' height='100' src="https://wlpinnacle.adsrv.eacdn.com/I.ashx?btag=a_18616b_11757c_&affid=17720&siteid=18616&adid=11757&c=" ></iframe>
+       </div>
+        <div class="ad_holder">
+           <iframe width="100%" scrolling='no' frameBorder='0' style='padding:0px; margin:0px; border:0px;border-style:none;border-style:none;' width='150' height='100' src="https://wlpinnacle.adsrv.eacdn.com/I.ashx?btag=a_18616b_11961c_&affid=17720&siteid=18616&adid=11961&c=" ></iframe>
         </div>
      </div>
   </div>

@@ -20,6 +20,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/front_end/css/sweetalert.css')}}"/>
 <link href="{{asset('assets/front_end/css/mCustomScrollbar.css')}}" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{asset('assets/front_end/js/jquery.validationEngine-en.js')}}" type="text/javascript" charset="utf-8"></script>
 <script src="{{asset('assets/front_end/js/jquery.validationEngine.js')}}" type="text/javascript"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>

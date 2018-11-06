@@ -22,10 +22,10 @@
                     </ul>
                     <?php if(!empty($GetAcademyContent)) { ?>
                     <div class="apm-tab-content">
-                        <div class="apm-tc-hd"><?php echo $GetAcademyContent[0][module_name]; ?></div>
-                        <div class="apm-tc-subhd"><?php echo $GetAcademyContent[0][lesson]; ?></div>
-                        <div class="pull-right imgdv"><img src="{{asset('')}}<?php echo $GetAcademyContent[0][image1]; ?>" alt="Bet Image"/></div>
-                        <p><?php echo $GetAcademyContent[0][articles]; ?></p>
+                        <div class="apm-tc-hd"><?php echo $GetAcademyContent[0]['module_name']; ?></div>
+                        <div class="apm-tc-subhd"><?php echo $GetAcademyContent[0]['lesson']; ?></div>
+                        <div class="pull-right imgdv"><img src="{{asset('')}}<?php echo $GetAcademyContent[0]['image1']; ?>" alt="Bet Image"/></div>
+                        <p><?php echo $GetAcademyContent[0]['articles']; ?></p>
                     </div>
                     <?php } ?>
                 </div>

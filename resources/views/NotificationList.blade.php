@@ -26,36 +26,36 @@ if(!empty($CheckReadNotification))
 {
     foreach($CheckReadNotification as $Key=>$value)
     {
-        $time = strtotime($value[creation_date]);
+        $time = strtotime($value['creation_date']);
         $GetUserDetails = Users::select('id','name','profile_picture')->where('id',$value['from_userid'])->get()->toArray();
-        $EncryptedKey = SetEncodedId($value[id]);
+        $EncryptedKey = SetEncodedId($value['id']);
 ?>
 <li>
-    <?php if($value[incident_type] == 'Follow'){ ?>
+    <?php if($value['incident_type'] == 'Follow'){ ?>
     <a class="aflx" href="{{url('follow-following')}}/<?php echo $EncryptedKey; ?>">
-    <?php } elseif($value[incident_type] == 'Post'){ ?>
+    <?php } elseif($value['incident_type'] == 'Post'){ ?>
     <a class="aflx" href="{{url('trending')}}/<?php echo $EncryptedKey; ?>">
-    <?php } elseif($value[incident_type] == 'Post Comment'){ ?>
+    <?php } elseif($value['incident_type'] == 'Post Comment'){ ?>
     <a class="aflx" href="{{url('trending')}}/<?php echo $EncryptedKey; ?>">
-    <?php } elseif($value[incident_type] == 'Comment Like'){ ?>
+    <?php } elseif($value['incident_type'] == 'Comment Like'){ ?>
     <a class="aflx" href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
-    <?php } elseif($value[incident_type] == 'Reply'){ ?>
+    <?php } elseif($value['incident_type'] == 'Reply'){ ?>
     <a class="aflx" href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
-    <?php } elseif($value[incident_type] == 'Comment'){ ?>
+    <?php } elseif($value['incident_type'] == 'Comment'){ ?>
     <a class="aflx" href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
     <?php }else{ ?>
     <a class="aflx" href="{{url('visit-news-feed-page')}}/<?php echo $EncryptedKey; ?>">
     <?php } ?>
     <!--a class="aflx" href="javascript:void(0);"-->
         <div class="dp-profile-lft">
-        <?php if(empty($GetUserDetails[0][profile_picture])) { ?>
+        <?php if(empty($GetUserDetails[0]['profile_picture'])) { ?>
             <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
         <?php }else{ ?>
-            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetUserDetails[0][profile_picture]; ?>" alt="Sample Profile Picture"/>
+            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetUserDetails[0]['profile_picture']; ?>" alt="Sample Profile Picture"/>
         <?php } ?>
         </div>
         <div class="dp-drp-rt">
-            <div class="dp-drp-rt-top"><span><?php echo $value[text]; ?></span></div>
+            <div class="dp-drp-rt-top"><span><?php echo $value['text']; ?></span></div>
             <div class="dp-drp-rt-time"><?php echo humanTiming($time).' ago'; ?></div>
         </div>
     </a>

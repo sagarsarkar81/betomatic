@@ -92,7 +92,7 @@ use App\Users;
                         <div class="input-group-btn">
                            <i class="fa fa-search"></i>
                         </div>
-                        <input type="text" id="SearchInput" autocomplete="off" class="form-control" placeholder="Search for people..." name="SearchUsername" onkeyup="SearchByUsername(this.value)"/>
+                        <input type="text" id="" autocomplete="off" class="form-control" placeholder="Search for people..." name="SearchUsername" onkeyup="SearchByUsername(this.value)"/>
                      </div>
                      <div class="Header_search_data" id="SearchDataMessage" style="display: none;">
                      <?php 
@@ -103,14 +103,14 @@ use App\Users;
                                 $GetNameOfFriends = Users::select('id','name','profile_picture')->where('id',$Value['to_user_id'])->get()->toArray();
                         ?>
                         <div class="Search_list">
-                            <?php if(!empty($GetNameOfFriends[0][profile_picture])) { ?>
-                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetNameOfFriends[0][profile_picture]; ?>"/>
+                            <?php if(!empty($GetNameOfFriends[0]['profile_picture'])) { ?>
+                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetNameOfFriends[0]['profile_picture']; ?>"/>
                             <?php } else{ ?>
                             <img src="{{asset('assets/front_end/images/avatar.jpg')}}" />
                             <?php } ?>
-                            <!--a href="{{url('visit-message-page')}}<?php echo '/'.$GetNameOfFriends[0][id]; ?>"-->
-                            <a href="javascript:void(0);" onclick="VisitMessagePage('<?php echo $GetNameOfFriends[0][id]; ?>')">  
-                            <?php echo $GetNameOfFriends[0][name]; ?>
+                            <!--a href="{{url('visit-message-page')}}<?php echo '/'.$GetNameOfFriends[0]['id']; ?>"-->
+                            <a href="javascript:void(0);" onclick="VisitMessagePage('<?php echo $GetNameOfFriends[0]['id']; ?>')">  
+                            <?php echo $GetNameOfFriends[0]['name']; ?>
                             <!--span>1 Follower</span-->
                             </a>
                         </div>
