@@ -35,7 +35,7 @@ use App\follow_users;
                             { 
                                 foreach($FollowersData as $KeyFollowers=>$ValueFollowers) 
                                 { 
-                                    $UserDetails = Users::where('id',$ValueFollowers[from_userid])->get()->toArray();
+                                    $UserDetails = Users::where('id',$ValueFollowers['from_userid'])->get()->toArray();
                                     if(!empty($UserDetails))
                                     {
                                         foreach($UserDetails as $KeyUser=>$ValueUser)
@@ -48,13 +48,13 @@ use App\follow_users;
                                           <div class="col-md-4">
                                              <div class="leader_user">
                                                 <div class="leader_userDetails">
-                                                   <?php if($ValueUser[profile_picture] == '') { ?>
+                                                   <?php if($ValueUser['profile_picture'] == '') { ?>
                                                    <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                                                    <?php } else { ?>
-                                                   <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$ValueUser[profile_picture]; ?>"/>
+                                                   <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$ValueUser['profile_picture']; ?>"/>
                                                    <?php } ?>
                                                    <h3>
-                                                        <a href="{{url('visit-user-profile')}}/<?php echo $ValueUser[id]; ?>"> <?php echo $ValueUser[name]; ?></a>
+                                                        <a href="{{url('visit-user-profile')}}/<?php echo $ValueUser['id']; ?>"> <?php echo $ValueUser['name']; ?></a>
                                                    </h3>
                                                 </div>
                                              </div>
@@ -62,7 +62,7 @@ use App\follow_users;
                                           <div class="col-md-8">
                                              <ul class="leader_user_content">
                                              <?php
-                                             $GetFollowers = follow_users::where('to_user_id',$ValueUser[id])->get()->toArray();
+                                             $GetFollowers = follow_users::where('to_user_id',$ValueUser['id'])->get()->toArray();
                                              $CountFollowers = count($GetFollowers);
                                              ?>
                                                 <li class="pull-left">
@@ -118,7 +118,7 @@ use App\follow_users;
                                                       <span>win rate</span>
                                                    </li>
                                                    <li>
-                                                      <button type="button" class="user_view_profile" onclick="location.href='{{url('view-user-profile')}}/<?php echo $ValueUser[id]; ?>'"> View Profile </button>
+                                                      <button type="button" class="user_view_profile" onclick="location.href='{{url('view-user-profile')}}/<?php echo $ValueUser['id']; ?>'"> View Profile </button>
                                                    </li>
                                                 </ul>
                                              </div>
@@ -144,9 +144,9 @@ use App\follow_users;
                                     foreach($FetchUserData as $DataKey=>$DataValue) 
                                     { 
                                         $user_id = Session::get('user_id');
-                                        if($DataValue[id] != $VisitorUserId) 
+                                        if($DataValue['id'] != $VisitorUserId) 
                                         {
-                                            $UserFollowData = follow_users::where('from_userid',$VisitorUserId)->where('to_user_id',$DataValue[id])->get()->toArray();
+                                            $UserFollowData = follow_users::where('from_userid',$VisitorUserId)->where('to_user_id',$DataValue['id'])->get()->toArray();
                                             if(!empty($UserFollowData)) {
                                                 foreach($UserFollowData as $ValueUserData)
                                                 {
@@ -158,13 +158,13 @@ use App\follow_users;
                                           <div class="col-md-4">
                                              <div class="leader_user">
                                                 <div class="leader_userDetails">
-                                                   <?php if($DataValue[profile_picture] == '') { ?>
+                                                   <?php if($DataValue['profile_picture'] == '') { ?>
                                                    <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                                                    <?php } else { ?>
-                                                   <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$DataValue[profile_picture]; ?>"/>
+                                                   <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$DataValue['profile_picture']; ?>"/>
                                                    <?php } ?>
                                                    <h3>
-                                                        <a href="{{url('visit-user-profile')}}/<?php echo $DataValue[id]; ?>"> <?php echo $DataValue[name]; ?></a>
+                                                        <a href="{{url('visit-user-profile')}}/<?php echo $DataValue['id']; ?>"> <?php echo $DataValue['name']; ?></a>
                                                    </h3>
                                                 </div>
                                              </div>
@@ -172,7 +172,7 @@ use App\follow_users;
                                           <div class="col-md-8">
                                              <ul class="leader_user_content">
                                              <?php
-                                             $GetFollowers = follow_users::where('to_user_id',$DataValue[id])->get()->toArray();
+                                             $GetFollowers = follow_users::where('to_user_id',$DataValue['id'])->get()->toArray();
                                              $CountFollowers = count($GetFollowers);
                                              ?>
                                                 <li class="pull-left">
@@ -228,7 +228,7 @@ use App\follow_users;
                                                       <span>win rate</span>
                                                    </li>
                                                    <li>
-                                                      <button type="button" class="user_view_profile" onclick="location.href='{{url('view-user-profile')}}/<?php echo $DataValue[id]; ?>'"> View Profile </button>
+                                                      <button type="button" class="user_view_profile" onclick="location.href='{{url('view-user-profile')}}/<?php echo $DataValue['id']; ?>'"> View Profile </button>
                                                    </li>
                                                 </ul>
                                              </div>
@@ -266,9 +266,9 @@ use App\follow_users;
                                     foreach($FetchUserData as $DataKey=>$DataValue) 
                                     { 
                                         $user_id = Session::get('user_id');
-                                        if($DataValue[id] != $VisitorUserId) 
+                                        if($DataValue['id'] != $VisitorUserId) 
                                         {
-                                            $UserFollowData = follow_users::where('from_userid',$VisitorUserId)->where('to_user_id',$DataValue[id])->get()->toArray();
+                                            $UserFollowData = follow_users::where('from_userid',$VisitorUserId)->where('to_user_id',$DataValue['id'])->get()->toArray();
                                             if(empty($UserFollowData)) {
             
                               ?>
@@ -279,13 +279,13 @@ use App\follow_users;
                                           <div class="col-md-4">
                                              <div class="leader_user">
                                                 <div class="leader_userDetails">
-                                                   <?php if($DataValue[profile_picture] == '') { ?>
+                                                   <?php if($DataValue['profile_picture'] == '') { ?>
                                                    <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                                                    <?php } else { ?>
-                                                   <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$DataValue[profile_picture]; ?>"/>
+                                                   <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$DataValue['profile_picture']; ?>"/>
                                                    <?php } ?>
                                                    <h3>
-                                                        <a href="{{url('visit-user-profile')}}/<?php echo $DataValue[id]; ?>"> <?php echo $DataValue[name]; ?></a>
+                                                        <a href="{{url('visit-user-profile')}}/<?php echo $DataValue['id']; ?>"> <?php echo $DataValue['name']; ?></a>
                                                    </h3>
                                                 </div>
                                              </div>
@@ -293,7 +293,7 @@ use App\follow_users;
                                           <div class="col-md-8">
                                              <ul class="leader_user_content">
                                              <?php
-                                             $GetFollowers = follow_users::where('to_user_id',$DataValue[id])->get()->toArray();
+                                             $GetFollowers = follow_users::where('to_user_id',$DataValue['id'])->get()->toArray();
                                              $CountFollowers = count($GetFollowers);
                                              ?>
                                                 <li class="pull-left">
@@ -313,7 +313,7 @@ use App\follow_users;
                                                 ?>
                                                 <?php //if(empty($UserFollowData)) { ?>
                                                 <li class="pull-right">
-                                                   <button type="button" id="follow<?php echo $DataValue[id]; ?>" class="user_follow active" onclick="FollowUser('<?php echo $DataValue[id];?>','<?php echo $DataValue[name];?>')">Follow</button>
+                                                   <button type="button" id="follow<?php echo $DataValue['id']; ?>" class="user_follow active" onclick="FollowUser('<?php echo $DataValue['id'];?>','<?php echo $DataValue['name'];?>')">Follow</button>
                                                 </li>
                                                 <?php //} ?>
                                                 <div class="clearfix"></div>

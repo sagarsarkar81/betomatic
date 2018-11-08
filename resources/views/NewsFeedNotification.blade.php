@@ -25,7 +25,7 @@ function humanTiming ($time)
         $numberOfUnits = floor($time / $unit);
         return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
     }
-    $time = strtotime($GetFeedDetails[0][creation_date]);
+    $time = strtotime($GetFeedDetails[0]['creation_date']);
 }
 $user_id = Session::get('user_id');
 ?>
@@ -57,11 +57,11 @@ $user_id = Session::get('user_id');
                <div class="ns-hd">Notifications</div>
                <div class="ns-content-container">
                   <div class="ns-c-notifrow">
-                     <div class="ns-c-notifrow-date"><?php if(!empty($GetNotificationDetails)) { echo date("j M Y",strtotime($GetNotificationDetails[0][creation_date])); } ?></div>
+                     <div class="ns-c-notifrow-date"><?php if(!empty($GetNotificationDetails)) { echo date("j M Y",strtotime($GetNotificationDetails[0]['creation_date'])); } ?></div>
                      <div class="ns-c-notifrow-event">
                      <a href="javascript:void(0);">
                         <i class="fa fa-thumbs-up"></i>
-                        <div class="ns-c-notifrow-event-msg"><span><?php if(!empty($GetNotificationDetails)) { echo $GetNotificationDetails[0][text]; } ?></span></div>
+                        <div class="ns-c-notifrow-event-msg"><span><?php if(!empty($GetNotificationDetails)) { echo $GetNotificationDetails[0]['text']; } ?></span></div>
                      </a>
                      </div>
                   </div>
@@ -73,12 +73,12 @@ $user_id = Session::get('user_id');
                   /****************Checking copied post****************************/
                   if(!empty($GetFeedDetails))
                   {
-                      if($GetFeedDetails[0][copied_post_id] != NULL)
+                      if($GetFeedDetails[0]['copied_post_id'] != NULL)
                       {
-                        $GetUserId = news_feeds::select('user_id')->where('id',$GetFeedDetails[0][copied_post_id])->get()->toArray();
+                        $GetUserId = news_feeds::select('user_id')->where('id',$GetFeedDetails[0]['copied_post_id'])->get()->toArray();
                         $GetUserName = Users::select('name')->where('id',$GetUserId[0]['user_id'])->get()->toArray();
                       ?>
-                        <div class="copyItem" id="CopyComments<?php echo $IncidentId; ?>"><?php echo 'Copied from '.$GetUserName[0][name];?></div>
+                        <div class="copyItem" id="CopyComments<?php echo $IncidentId; ?>"><?php echo 'Copied from '.$GetUserName[0]['name'];?></div>
                       <?php
                       }
                   }
@@ -88,15 +88,15 @@ $user_id = Session::get('user_id');
                     <div id="BetSlipSetteled<?php echo $post_id; ?>" style="display: none;"></div>
                      <div class="feed_profile_details">
                         <div class="feed_img">
-                        <?php if(empty($GetUserDetails[0][profile_picture])) { ?>
+                        <?php if(empty($GetUserDetails[0]['profile_picture'])) { ?>
                             <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                         <?php }else{ ?>
-                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetUserDetails[0][profile_picture]; ?>"/>
+                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$GetUserDetails[0]['profile_picture']; ?>"/>
                         <?php } ?>
                         </div>
                         <div class="feed_user_name">
-                           <a href="{{url('visit-user-profile')}}/<?php echo $GetUserDetails[0][id]; ?>">
-                              <h4><?php if(!empty($GetUserDetails)) { echo $GetUserDetails[0][name]; } ?>  <span><?php $time = strtotime($GetFeedDetails[0][creation_date]); echo humanTiming($time).' ago'; ?></span></h4>
+                           <a href="{{url('visit-user-profile')}}/<?php echo $GetUserDetails[0]['id']; ?>">
+                              <h4><?php if(!empty($GetUserDetails)) { echo $GetUserDetails[0]['name']; } ?>  <span><?php $time = strtotime($GetFeedDetails[0]['creation_date']); echo humanTiming($time).' ago'; ?></span></h4>
                               <!--p>Place a bet via ladbrokers</p-->
                            </a>
                         </div>
@@ -107,16 +107,16 @@ $user_id = Session::get('user_id');
                      {
                      ?>
                      <div class="feed_body">
-                        <h4><?php if(!empty($Blockdata)) { echo $Blockdata[home_team].' vs '.$Blockdata[away_team]; } ?></h4>
-                        <p>Match Betting : <span><?php echo $MatchbettingDate = date("jS F",strtotime($Blockdata[match_betting_date])) .'|'. date("H:i",strtotime($Blockdata[match_betting_date])) ;?></span></p>
-                        <?php if($Blockdata[Odds_type] == 'Home'){ ?>
-                           <h3><?php echo $Blockdata[home_team]; ?><span>@<?php echo $Blockdata[odds_value]; ?></span></h3>
-                           <?php }elseif($Blockdata[Odds_type] == 'Draw'){ ?>
-                           <h3><?php echo $Blockdata[home_team]; ?> | <?php echo $Blockdata[away_team]; ?> <span>@<?php echo $Blockdata[odds_value]; ?></span></h3>
-                           <?php }elseif($Blockdata[Odds_type] == 'Away'){ ?>
-                           <h3><?php echo $Blockdata[away_team]; ?><span>@<?php echo $Blockdata[odds_value]; ?></span></h3>
+                        <h4><?php if(!empty($Blockdata)) { echo $Blockdata['home_team'].' vs '.$Blockdata['away_team']; } ?></h4>
+                        <p>Match Betting : <span><?php echo $MatchbettingDate = date("jS F",strtotime($Blockdata['match_betting_date'])) .'|'. date("H:i",strtotime($Blockdata['match_betting_date'])) ;?></span></p>
+                        <?php if($Blockdata['Odds_type'] == 'Home'){ ?>
+                           <h3><?php echo $Blockdata['home_team']; ?><span>@<?php echo $Blockdata['odds_value']; ?></span></h3>
+                           <?php }elseif($Blockdata['Odds_type'] == 'Draw'){ ?>
+                           <h3><?php echo $Blockdata['home_team']; ?> | <?php echo $Blockdata['away_team']; ?> <span>@<?php echo $Blockdata['odds_value']; ?></span></h3>
+                           <?php }elseif($Blockdata['Odds_type'] == 'Away'){ ?>
+                           <h3><?php echo $Blockdata['away_team']; ?><span>@<?php echo $Blockdata['odds_value']; ?></span></h3>
                            <?php } else { ?>
-                           <h3><?php echo $Blockdata[Odds_type]; ?><span>@<?php echo $Blockdata[odds_value]; ?></span></h3>
+                           <h3><?php echo $Blockdata['Odds_type']; ?><span>@<?php echo $Blockdata['odds_value']; ?></span></h3>
                         <?php } ?>
                      </div>
                      <?php
@@ -124,7 +124,7 @@ $user_id = Session::get('user_id');
                      ?>
                      <!-- difference according to odds -->
                       <div class="feed_chart">
-                        <h3>Return <span>@<?php echo number_format($GetFeedDetails[0][total_return], 2, '.', ''); ?></span></h3>
+                        <h3>Return <span>@<?php echo number_format($GetFeedDetails[0]['total_return'], 2, '.', ''); ?></span></h3>
                       </div>
                      <!-- difference according to odds end -->
                     </div>
@@ -139,7 +139,7 @@ $user_id = Session::get('user_id');
                               {
                               ?>
                                 <li>
-                                   <a data-toggle="tooltip" data-placement="top" title="Like"  href="javascript:void(0);" onclick="NewsFeedLikes('<?php echo $post_id; ?>','<?php echo $GetFeedDetails[0][user_id]; ?>')">
+                                   <a data-toggle="tooltip" data-placement="top" title="Like"  href="javascript:void(0);" onclick="NewsFeedLikes('<?php echo $post_id; ?>','<?php echo $GetFeedDetails[0]['user_id']; ?>')">
                                      0
                                      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                    </a>
@@ -154,7 +154,7 @@ $user_id = Session::get('user_id');
                                      <button type="button" data-toggle="modal" data-target="#LikeViewModal" onclick="PeopleLikeDeatils('<?php echo $post_id; ?>')">People who liked</button>
                                      </div>
                                </i>
-                               <a data-toggle="tooltip" data-placement="top" title="Like" href="javascript:void(0);" onclick="NewsFeedLikes('<?php echo $post_id; ?>','<?php echo $GetFeedDetails[0][user_id]; ?>')">
+                               <a data-toggle="tooltip" data-placement="top" title="Like" href="javascript:void(0);" onclick="NewsFeedLikes('<?php echo $post_id; ?>','<?php echo $GetFeedDetails[0]['user_id']; ?>')">
                                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                </a>
                              </li>
@@ -249,31 +249,31 @@ $user_id = Session::get('user_id');
                                 {
                                     foreach($FetchComments as $key=>$Comments)
                                     {
-                                        $user_name = Users::select('id','name','profile_picture')->where('id',$Comments[user_id])->get()->toArray();
+                                        $user_name = Users::select('id','name','profile_picture')->where('id',$Comments['user_id'])->get()->toArray();
                                 ?>
                                 <div class="comment_wrap">
-                                     <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0][id]; ?>">
-                                     <?php if(empty($user_name[0][profile_picture])) { ?>
+                                     <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0]['id']; ?>">
+                                     <?php if(empty($user_name[0]['profile_picture'])) { ?>
                                      <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                                      <?php } else{  ?>
-                                     <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$user_name[0][profile_picture]; ?>"/>
+                                     <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$user_name[0]['profile_picture']; ?>"/>
                                      <?php } ?>
                                      </a>
                                      <div class="">
                                         <p>
-                                           <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0][id]; ?>"> <?php echo $user_name[0][name]; ?> </a>
-                                           <span><?php echo $PostingTime = date("h:i:sa, d.m.Y",strtotime($Comments[creation_date]))?></span>
-                                           <p><?php echo $Comments[comments]; ?></p>
+                                           <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0]['id']; ?>"> <?php echo $user_name[0]['name']; ?> </a>
+                                           <span><?php echo $PostingTime = date("h:i:sa, d.m.Y",strtotime($Comments['creation_date']))?></span>
+                                           <p><?php echo $Comments['comments']; ?></p>
                                         </p>
                                         <!-- Comment Edit and Delete -->
-                                        <?php if($Comments[user_id] == $user_id) { ?>
+                                        <?php if($Comments['user_id'] == $user_id) { ?>
                                         <div class="dropdown feed_more">
                                           <a title="Comment Action" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                           </a>
                                           <ul class="dropdown-menu" role="menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                                            <li><a data-toggle="modal" data-target="#EditCommentModal" href="javascript:void(0);" onclick="DisplayEditCommentModal('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>')">Edit</a></li>
-                                            <li><a href="javascript:void(0);" onclick="DeleteComments('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>')">Delete</a></li>
+                                            <li><a data-toggle="modal" data-target="#EditCommentModal" href="javascript:void(0);" onclick="DisplayEditCommentModal('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>')">Edit</a></li>
+                                            <li><a href="javascript:void(0);" onclick="DeleteComments('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>')">Delete</a></li>
                                           </ul>
                                        </div>
                                        <?php }elseif($GetFeedDetails[0]['user_id'] == $user_id){ ?>
@@ -282,7 +282,7 @@ $user_id = Session::get('user_id');
                                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                           </a>
                                           <ul class="dropdown-menu" role="menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                                            <li><a href="javascript:void(0);" onclick="DeleteComments('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>')">Delete</a></li>
+                                            <li><a href="javascript:void(0);" onclick="DeleteComments('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>')">Delete</a></li>
                                           </ul>
                                        </div>
                                        <?php } ?>
@@ -291,7 +291,7 @@ $user_id = Session::get('user_id');
                                         <div class="comment_reply_activity">
                                            <ul>
                                               <?php
-                                              $GetCountOfLikeOnComment = comment_likes::where('post_id',$post_id)->where('comment_id',$Comments[id])->get()->toArray();
+                                              $GetCountOfLikeOnComment = comment_likes::where('post_id',$post_id)->where('comment_id',$Comments['id'])->get()->toArray();
                                               $CheckloggedUserLikeReply = comment_likes::where('post_id',$post_id)->where('from_user_id',$user_id)->get()->toArray();
                                               $GetCountOnLike = count($GetCountOfLikeOnComment);
                                               if($GetCountOnLike == 0)
@@ -301,7 +301,7 @@ $user_id = Session::get('user_id');
                                                          <i id="likepost" class="likepost_hover">
                                                             <?php echo $GetCountOnLike; ?>
                                                          </i>
-                                                         <a href="javascript:void(0);" onclick="NewsFeedCommentsLikes('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>','<?php echo $Comments[user_id]; ?>')">  <i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</a>
+                                                         <a href="javascript:void(0);" onclick="NewsFeedCommentsLikes('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>','<?php echo $Comments['user_id']; ?>')">  <i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</a>
                                                     </li>
                                               <?php
                                               }else{
@@ -310,24 +310,24 @@ $user_id = Session::get('user_id');
                                                          <i id="likepost" class="likepost_hover">
                                                             <?php echo $GetCountOnLike; ?>
                                                             <div class="live_user">
-                                                               <button type="button" data-toggle="modal" data-target="#LikeViewModalForComment" onclick="PeopleLikeDeatilsOnComment('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>')">People who liked</button>
+                                                               <button type="button" data-toggle="modal" data-target="#LikeViewModalForComment" onclick="PeopleLikeDeatilsOnComment('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>')">People who liked</button>
                                                             </div>
                                                          </i>
-                                                         <a href="javascript:void(0);" onclick="NewsFeedCommentsLikes('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>','<?php echo $Comments[user_id]; ?>')">  <i class="fa fa-thumbs-up" aria-hidden="true"></i> <?php if($GetCountOnLike == 1) { echo "Like"; }else{ echo "Likes"; }?></a>
+                                                         <a href="javascript:void(0);" onclick="NewsFeedCommentsLikes('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>','<?php echo $Comments['user_id']; ?>')">  <i class="fa fa-thumbs-up" aria-hidden="true"></i> <?php if($GetCountOnLike == 1) { echo "Like"; }else{ echo "Likes"; }?></a>
                                                     </li>
                                               <?php
                                               }
                                               ?>
-                                              <?php $GetCountOfReplyOnComment = comment_replies::where('post_id',$post_id)->where('comment_id',$Comments[id])->get()->toArray(); $GetCountOnReply = count($GetCountOfReplyOnComment);
+                                              <?php $GetCountOfReplyOnComment = comment_replies::where('post_id',$post_id)->where('comment_id',$Comments['id'])->get()->toArray(); $GetCountOnReply = count($GetCountOfReplyOnComment);
                                               if($GetCountOnReply == 0)
                                               {
                                               ?>
                                                 <li>
-                                                 <a href="javascript:void(0);" onclick="SubCommentReply('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>','<?php echo $Comments[user_id]; ?>')"> <?php echo $GetCountOnReply; ?>  <i class="fa fa-reply-all" aria-hidden="true"></i> Reply </a>
+                                                 <a href="javascript:void(0);" onclick="SubCommentReply('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>','<?php echo $Comments['user_id']; ?>')"> <?php echo $GetCountOnReply; ?>  <i class="fa fa-reply-all" aria-hidden="true"></i> Reply </a>
                                                 </li>
                                               <?php }else{?>
                                               <li class="active">
-                                                 <a href="javascript:void(0);" onclick="SubCommentReply('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>','<?php echo $Comments[user_id]; ?>')"> <?php echo $GetCountOnReply; ?>  <i class="fa fa-reply-all" aria-hidden="true"></i> <?php if($GetCountOnReply == 1) { echo "Reply" ; }else{ echo "Replies"; }?> </a>
+                                                 <a href="javascript:void(0);" onclick="SubCommentReply('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>','<?php echo $Comments['user_id']; ?>')"> <?php echo $GetCountOnReply; ?>  <i class="fa fa-reply-all" aria-hidden="true"></i> <?php if($GetCountOnReply == 1) { echo "Reply" ; }else{ echo "Replies"; }?> </a>
                                               </li>
                                               <?php } ?>
                                            </ul>
@@ -336,28 +336,28 @@ $user_id = Session::get('user_id');
                                 </div>
                                <!-- Comment reply -->
                               <?php
-                               $GetReplyAgainstComment = comment_replies::where('post_id',$post_id)->where('comment_id',$Comments[id])->get()->toArray();
+                               $GetReplyAgainstComment = comment_replies::where('post_id',$post_id)->where('comment_id',$Comments['id'])->get()->toArray();
                                if(!empty($GetReplyAgainstComment))
                                {
                                     foreach($GetReplyAgainstComment as $CommentKey=>$CommentValue)
                                     {
-                                        $user_name = Users::select('id','name','profile_picture')->where('id',$CommentValue[from_user_id])->get()->toArray();
+                                        $user_name = Users::select('id','name','profile_picture')->where('id',$CommentValue['from_user_id'])->get()->toArray();
                                ?>
                                     <div class="comment_reply">
-                                        <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0][id]; ?>">
-                                        <?php if(empty($user_name[0][profile_picture])) { ?>
+                                        <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0]['id']; ?>">
+                                        <?php if(empty($user_name[0]['profile_picture'])) { ?>
                                             <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                                         <?php } else{  ?>
-                                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$user_name[0][profile_picture]; ?>"/>
+                                            <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$user_name[0]['profile_picture']; ?>"/>
                                         <?php } ?>
                                         </a>
                                         <p>
-                                        <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0][id]; ?>"> <?php echo $user_name[0][name]; ?> </a>
-                                        <span><?php echo $PostingTime = date("h:i:sa, d.m.Y",strtotime($CommentValue[creation_date]))?></span>
-                                        <b><?php echo $CommentValue[replied_text]; ?></b>
+                                        <a href="{{url('visit-user-profile')}}/<?php echo $user_name[0]['id']; ?>"> <?php echo $user_name[0]['name']; ?> </a>
+                                        <span><?php echo $PostingTime = date("h:i:sa, d.m.Y",strtotime($CommentValue['creation_date']))?></span>
+                                        <b><?php echo $CommentValue['replied_text']; ?></b>
                                         </p>
                                         <!-- Comment Edit and Delete -->
-                                        <?php if($CommentValue[from_user_id] == $user_id) { ?>
+                                        <?php if($CommentValue['from_user_id'] == $user_id) { ?>
                                         <div class="dropdown feed_more">
                                           <a title="Comment Action" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -367,13 +367,13 @@ $user_id = Session::get('user_id');
                                             <li><a href="javascript:void(0);" onclick="DeleteReply('<?php echo $post_id; ?>','<?php echo $CommentValue[id]; ?>')">Delete</a></li>
                                           </ul>
                                        </div>
-                                       <?php }elseif($GetFeedDetails[0][user_id] == $user_id || $Comments[user_id] == $user_id) { ?>
+                                       <?php }elseif($GetFeedDetails[0]['user_id'] == $user_id || $Comments['user_id'] == $user_id) { ?>
                                        <div class="dropdown feed_more">
                                           <a title="Comment Action" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                           </a>
                                           <ul class="dropdown-menu" role="menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                                             <li><a href="javascript:void(0);" onclick="DeleteReply('<?php echo $post_id; ?>','<?php echo $CommentValue[id]; ?>')">Delete</a></li>
+                                             <li><a href="javascript:void(0);" onclick="DeleteReply('<?php echo $post_id; ?>','<?php echo $CommentValue['id']; ?>')">Delete</a></li>
                                           </ul>
                                        </div>
                                        <?php } ?>
@@ -384,17 +384,17 @@ $user_id = Session::get('user_id');
                                     }
                                }
                                ?>
-                               <div class="SubCommentsInput" style="display: none;" id="SubComments<?php echo $Comments[id]; ?>">
+                               <div class="SubCommentsInput" style="display: none;" id="SubComments<?php echo $Comments['id']; ?>">
                                     <?php $user_id = Session::get('user_id');
                                     $logged_in_user_name = Users::select('id','name','profile_picture')->where('id',$user_id)->get()->toArray();
-                                    if(empty($logged_in_user_name[0][profile_picture])) { ?>
+                                    if(empty($logged_in_user_name[0]['profile_picture'])) { ?>
                                         <img src="{{asset('assets/front_end/images/avatar.jpg')}}"/>
                                     <?php } else{  ?>
-                                        <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$logged_in_user_name[0][profile_picture]; ?>"/>
+                                        <img src="{{asset('assets/front_end/images/')}}<?php echo '/'.$logged_in_user_name[0]['profile_picture']; ?>"/>
                                     <?php } ?>
-                                    <form id="SubCommentForm<?php echo $Comments[id]; ?>" action="javascript:void(0);" autocomplete="off">
-                                        <input class="form-control input" type="text" name="ReplyComment" id="GetReply<?php echo $Comments[id]; ?>" placeholder="Add a Comment ..." onkeyup="SubCommentBlockId(event,<?php echo $Comments[id]; ?>)"/>
-                                        <button type="button" style="display: block;" id="SubCommentButton<?php echo $Comments[id]; ?>" value="post" onclick="GetSubComments('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>','<?php echo $Comments[user_id]; ?>','<?php echo $GetFeedDetails[0][user_id]; ?>')"> <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                    <form id="SubCommentForm<?php echo $Comments['id']; ?>" action="javascript:void(0);" autocomplete="off">
+                                        <input class="form-control input" type="text" name="ReplyComment" id="GetReply<?php echo $Comments['id']; ?>" placeholder="Add a Comment ..." onkeyup="SubCommentBlockId(event,<?php echo $Comments['id']; ?>)"/>
+                                        <button type="button" style="display: block;" id="SubCommentButton<?php echo $Comments['id']; ?>" value="post" onclick="GetSubComments('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>','<?php echo $Comments['user_id']; ?>','<?php echo $GetFeedDetails[0]['user_id']; ?>')"> <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                     </form>
                                 </div>
                                <!-- replied against comment end -->
@@ -413,7 +413,7 @@ $user_id = Session::get('user_id');
                            </div>
                            <form id="CommentForm" action="javascript:void(0);" autocomplete="off">
                             <input class="form-control" type="text" name="comment" id="comment<?php echo $post_id; ?>" placeholder="Add a Comment ..." onkeyup="PasingBlockId(event,<?php echo $post_id; ?>)"/>
-                        	<button type="button" style="display: block;" id="CommentButton<?php echo $post_id;?>" value="post" onclick="GetComments('<?php echo $post_id; ?>','<?php echo $GetFeedDetails[0][user_id];?>')"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        	<button type="button" style="display: block;" id="CommentButton<?php echo $post_id;?>" value="post" onclick="GetComments('<?php echo $post_id; ?>','<?php echo $GetFeedDetails[0]['user_id'];?>')"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                            </form>
                         </div>
                     </div>
@@ -453,7 +453,7 @@ $user_id = Session::get('user_id');
                              foreach($GetReportItems as $ReportItems)
                              {
                         ?>
-                     <option value="<?php echo $ReportItems[id];?>"><?php echo $ReportItems[type_name];?></option>
+                     <option value="<?php echo $ReportItems[id];?>"><?php echo $ReportItems['type_name'];?></option>
                      <?php
                             }
                         }
