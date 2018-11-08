@@ -69,7 +69,7 @@ class EditProfileController extends Controller
         }
         if($request->file('image') != 0)
         {
-            $filename = $_FILES[image][name];
+            $filename = $_FILES['image']['name'];
             $image = $request->file('image');
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
             $input['imagename'] = $filename;
