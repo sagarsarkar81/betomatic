@@ -273,7 +273,7 @@ $user_id = Session::get('user_id');
                                           </a>
                                           <ul class="dropdown-menu" role="menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
                                             <li><a data-toggle="modal" data-target="#EditCommentModal" href="javascript:void(0);" onclick="DisplayEditCommentModal('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>')">Edit</a></li>
-                                            <li><a href="javascript:void(0);" onclick="DeleteComments('<?php echo $post_id; ?>','<?php echo $Comments[id]; ?>')">Delete</a></li>
+                                            <li><a href="javascript:void(0);" onclick="DeleteComments('<?php echo $post_id; ?>','<?php echo $Comments['id']; ?>')">Delete</a></li>
                                           </ul>
                                        </div>
                                        <?php }elseif($GetFeedDetails[0]['user_id'] == $user_id){ ?>

@@ -18,7 +18,7 @@
                {
                     foreach($CheckUnreadNotification as $Key=>$value)
                     {
-                        $EncryptedKey = SetEncodedId($value[id]);
+                        $EncryptedKey = SetEncodedId($value['id']);
                ?>
                <div class="ns-c-notifrow <?php if($value['detail_seen_status'] == 0){ echo "unread"; }?>">
                  <div class="ns-c-notifrow-date"><?php echo date("j M Y",strtotime($value['creation_date'])); ?></div>

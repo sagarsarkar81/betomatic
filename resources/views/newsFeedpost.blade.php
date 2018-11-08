@@ -237,7 +237,7 @@ $user_id = Session::get('user_id');
             }
        }
        ?>
-        <div class="SubCommentsInput" style="display: none;" id="SubComments<?php echo $Comments[id]; ?>">
+        <div class="SubCommentsInput" style="display: none;" id="SubComments<?php echo $Comments['id']; ?>">
             <?php //$user_id = Session::get('user_id');
             $logged_in_user_name = Users::select('id','name','profile_picture')->where('id',$user_id)->get()->toArray();
             if(empty($logged_in_user_name[0]['profile_picture'])) { ?>
