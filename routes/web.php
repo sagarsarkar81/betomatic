@@ -234,4 +234,12 @@ Route::get('/accumulator-bet-info','BetFairController\BetPlacingController@Accum
 Route::post('/stake-value','BetFairController\BetPlacingController@InputStakeValue');
 Route::post('/place-bet','BetFairController\BetPlacingController@BetPlaceData');
 Route::post('/remove-odds-from-session','BetFairController\BetPlacingController@RemoveOddsFromSession');
+
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('login/google', 'Auth\LoginController@redirectToProviderGoogle');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
+
 ?>

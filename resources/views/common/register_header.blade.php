@@ -67,7 +67,7 @@
                   <li class="dropdown top_icon drpdwnli">
                     <a href="javascript:void(0);" onclick="UnreadNotification()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         <img src="{{asset('assets/front_end/images/notification.png')}}"/>
-                        <span class="cart_val" id="UnreadNotification"></span>
+                        <span class="cart_val" id="UnreadNotification" style="display:none"></span>
                     </a>
                     <ul class="dropdown-menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX" id="ReadNotification">
                     </ul>
@@ -76,7 +76,7 @@
                   <li class="dropdown top_icon drpdwnli" id="MessageList">
                     <a href="javascript:void(0);" onclick="DetailMessageNotification()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         <img src="{{asset('assets/front_end/images/messages.png')}}"/>
-                        <span class="cart_val" id="MessageNotificationCount"></span>
+                        <span class="cart_val" id="MessageNotificationCount" style="display:none"></span>
                     </a>
                     <ul class="dropdown-menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX" id="MessageNotification">
                     </ul>
