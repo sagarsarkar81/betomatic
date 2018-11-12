@@ -56,13 +56,13 @@ $(document).ready(function(){
 				           <div class="clearfix"></div>
 					   	   <div class="social_login">
 					   	   	  <div class="col-md-6 col-sm-6">
-					   	   	  	<a class="facebook" href="#">
+                                    <a class="facebook" href="{{ url('login/facebook') }}">
 					   	   	  	{{__('label.Log in with Facebook')}}
 					   	   	  	<i class="fa fa-facebook-official" aria-hidden="true"></i>
 					   	   	  	</a>
 					   	   	  </div>
 					   	   	  <div class="col-md-6 pull-rihgt col-sm-6 ">
-					   	   	  	<a class="googleplus" href="#">
+					   	   	  	<a class="googleplus" href="{{ url('login/google') }}">
 					   	   	  	{{__('label.Login with Google')}}
 					   	   	  	<i class="fa fa-google-plus" aria-hidden="true"></i>
 					   	   	  	</a>

@@ -4,6 +4,9 @@ use App\Users;
 use App\cms_email_templates;
 use App\btg_user_betting_accounts;
 use App\point_table;
+use App\Http\Controller\Auth\LoginController;
+use Session;
+use Illuminate\Http\Request;
 
 date_default_timezone_set("CET");
 
@@ -462,5 +465,34 @@ function countryCodeToCountry($code) {
     if ($code == 'ZM') return 'Zambia';
     if ($code == 'ZW') return 'Zimbabwe';
     return 'Country';
+}
+
+function socialMediaLogin($Userdata) {
+
+    if(!empty($Userdata))
+    {
+        // aa($Userdata);
+        $insertId = Users::insertGetId($Userdata);
+        Session::put('user_id', $insertId);
+        /*********adding balance for new user**************/ 
+        $CheckUserExist = btg_user_betting_accounts::where('user_id',$value)->get()->toArray();
+        if(empty($CheckUserExist))
+        {
+            $balanceInfo = array('user_id'=>$value,'amount'=>100000,'status'=>1,'updation_date'=>date("Y-m-d H:i:s"));
+            $InsertBalance = btg_user_betting_accounts::insert($balanceInfo);
+        }
+        /*********adding balance for new user**************/
+        /********adding points**************/
+        $point_obj = point_table::where('user_id',$value)
+                    ->where('reason','like','%Login / day.%')
+                    ->where('date','like','%'.date('Y-m-d').'%')->first();
+        if($point_obj === null){
+            UpdatePoints($value,1,'Login / day.');
+        }
+        /***********************************/
+        return true;
+        
+    }
+
 }
 ?>
