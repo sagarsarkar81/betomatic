@@ -138,21 +138,22 @@ class RegistrationController extends Controller
             Session::put('user_id', $query[0]->id);
             $value = Session::get('user_id');
             $status = $query[0]->forgot_pass;
+            addBalance($value);
             /*********adding balance for new user**************/ 
-            $CheckUserExist = btg_user_betting_accounts::where('user_id',$value)->get()->toArray();
-            if(empty($CheckUserExist))
-            {
-                $balanceInfo = array('user_id'=>$value,'amount'=>100000,'status'=>1,'updation_date'=>date("Y-m-d H:i:s"));
-                $InsertBalance = btg_user_betting_accounts::insert($balanceInfo);
-            }
-            /*********adding balance for new user**************/
-            /********adding points**************/
-            $point_obj = point_table::where('user_id',$value)
-                        ->where('reason','like','%Login / day.%')
-                        ->where('date','like','%'.date('Y-m-d').'%')->first();
-            if($point_obj === null){
-                UpdatePoints($value,1,'Login / day.');
-            }
+            // $CheckUserExist = btg_user_betting_accounts::where('user_id',$value)->get()->toArray();
+            // if(empty($CheckUserExist))
+            // {
+            //     $balanceInfo = array('user_id'=>$value,'amount'=>100000,'status'=>1,'updation_date'=>date("Y-m-d H:i:s"));
+            //     $InsertBalance = btg_user_betting_accounts::insert($balanceInfo);
+            // }
+            // ********adding balance for new user*************
+            // /********adding points**************/
+            // $point_obj = point_table::where('user_id',$value)
+            //             ->where('reason','like','%Login / day.%')
+            //             ->where('date','like','%'.date('Y-m-d').'%')->first();
+            // if($point_obj === null){
+            //     UpdatePoints($value,1,'Login / day.');
+            // }
             /***********************************/
             /*******Check Remember Me Option For User In Betfair************/
             $checkUserInBetfair = BetfairUserDetail::where('btg_user_id',$value)->get();
