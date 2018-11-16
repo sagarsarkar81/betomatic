@@ -5,8 +5,8 @@ use App\cms_email_templates;
 use App\btg_user_betting_accounts;
 use App\point_table;
 use App\Http\Controller\Auth\LoginController;
-use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 date_default_timezone_set("CET");
 
@@ -471,10 +471,36 @@ function socialMediaLogin($Userdata) {
 
     if(!empty($Userdata))
     {
-        // aa($Userdata);
-        $insertId = Users::insertGetId($Userdata);
-        Session::put('user_id', $insertId);
-        /*********adding balance for new user**************/ 
+        //aa($Userdata);
+        $checkUser = CheckUserExist($Userdata);
+        if($checkUser == "not registered") {
+            $insertId = Users::insertGetId($Userdata);
+            Session::put('user_id', $insertId);
+        }else {
+            Session::put('user_id', $checkUser);
+        }
+        $value = Session::get('user_id');
+        addBalance($value);
+        
+        return true;
+        
+    }
+
+}
+
+function CheckUserExist($Userdata) {
+
+    $CheckUserExist = Users::where('name',$Userdata['name'])->where('email',$Userdata['email'])->get()->toArray();
+    if(empty($CheckUserExist)) {
+        return "not registered";//user not registered yet
+    } else {
+        return $CheckUserExist[0]['id'];// user already registered
+    }
+}
+
+function addBalance($value) {
+
+    /*********adding balance for new user**************/ 
         $CheckUserExist = btg_user_betting_accounts::where('user_id',$value)->get()->toArray();
         if(empty($CheckUserExist))
         {
@@ -490,9 +516,6 @@ function socialMediaLogin($Userdata) {
             UpdatePoints($value,1,'Login / day.');
         }
         /***********************************/
-        return true;
-        
-    }
 
 }
 ?>

@@ -82,11 +82,11 @@ class LoginController extends Controller
     {
         // dd($request);
         $user = Socialite::driver('google')->user();
-        //aa($user);
+        
         
         $UserData['name'] = $user->name;
         $UserData['email'] = $user->email;
-        $UserData['gender'] = $user->user['gender'];
+        //$UserData['gender'] = $user->user['gender'];
         $UserData['profile_picture'] = $user->avatar;
         $UserData['status'] = 1;
         $UserData['creation_date'] = date("Y-m-d H:i:s");
