@@ -471,7 +471,6 @@ function socialMediaLogin($Userdata) {
 
     if(!empty($Userdata))
     {
-        //aa($Userdata);
         $checkUser = CheckUserExist($Userdata);
         if($checkUser == "not registered") {
             $insertId = Users::insertGetId($Userdata);
@@ -481,7 +480,7 @@ function socialMediaLogin($Userdata) {
         }
         $value = Session::get('user_id');
         addBalance($value);
-        
+        displayRegistrationForm($value);
         return true;
         
     }
@@ -518,4 +517,11 @@ function addBalance($value) {
         /***********************************/
 
 }
+
+function displayRegistrationForm($user_id) {
+
+    $getUserData = Users::where('id',$user_id)->get()->toArray();
+    Session::put('user_data', $getUserData);
+}
+
 ?>

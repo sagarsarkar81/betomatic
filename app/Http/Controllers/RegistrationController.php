@@ -183,7 +183,11 @@ class RegistrationController extends Controller
             return redirect(url('login'));
         }
         $userId = Session::get('user_id');
+        //=================================================================================================
+        //if any user logged in through social media this function will open the registration form displayRegistrationForm()
+        //=================================================================================================
         $userData = Users::find($userId);
+        displayRegistrationForm($userData);
         Session::forget('AllComments');
         return view('home',compact('userData','GetReportItems'));
     }

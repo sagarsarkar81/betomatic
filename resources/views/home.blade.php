@@ -1,6 +1,14 @@
 @include('common/header_link')
 <!-- Sidebar -->
 @include('common/leftbar')
+
+@if(session()->has('user_data'))
+<script type="text/javascript">
+$(function() {
+    $('#registration_modal').modal('show');
+});
+</script>
+@endif
 <!-- Page Content -->
 <div class="bog_content">
    <!-- Page header top -->
@@ -192,6 +200,205 @@
   </div>
 </div>
 <!-- ................................. -->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--  registration modal -->
+<div id="registration_modal" data-easein="expandIn" class="modal fade registration_modal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{__('label.Create an account')}} </h4>
+      </div>
+      <div class="modal-body" id="modalContent">
+       <!-- Registration Content -->
+        <div class="registration_form"> 
+         <div class="col-md-10 col-md-offset-1"> 
+           <div class="row"> 
+             <!--script src="https://www.google.com/recaptcha/api.js" ></script-->
+             <form id="registration" action="javascript:void(0);" method="post" autocomplete="off" onsubmit="formSubmit()"> 
+               <div class="col-md-6">
+                <div class="form-group">
+            <input class="form-control validate[required,custom[onlyLetterSp]]" type="text" placeholder="{{__('label.Name')}}" name="name"/>
+          </div>
+               </div>
+               <div class="col-md-6">
+                <div class="form-group">
+                <input class="form-control validate[required]" type="text" placeholder="{{__('label.Username')}}" name="user_name" id="user_name" onkeyup="checkUserName();"/>
+                      <div class="usernameHintText" id="usernameHintText" style="display: none;">
+                      <p>{{__('label.Please select your username carefully.')}}<br/> {{__('label.You will not be able to change this again.')}}</p>
+                      </div>
+                      <div class="info-text" style="display: none; cursor:pointer;"><i class="fa fa-info-circle" aria-hidden="true"></i></div>
+                      <div id='username_availability_result' class="username_availability_result" style="display:none"></div>
+                      <div class="username_availability_result" id="username_valid_error" style="display: none;">{{__('label.Username can only be alphanumeric')}}</div>
+          </div>
+               </div>
+               <div class="col-md-6">
+                <div class="form-group">
+            <input class="form-control validate[required,custom[email]]" type="Email" placeholder="{{__('label.Email')}}" name="email" onkeyup="CheckUserEmail(this.value)" id="email"/>
+            <div id='email_availability_result' style="display:none" class="email_availability_result"></div>
+                  </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+               <select class="selectpicker validate[required] AgeGroup" id="age_group" name="age_group" data-live-search="true">
+                           <option value="">{{__('label.Age')}}</option>
+                           <option value="18-20">18-20</option>
+                           <option value="21-25">21-25</option>
+                           <option value="26-30">26-30</option>
+                           <option value="30+">30+</option>
+                         </select>
+                       </div>  
+            </div>
+            <div class="col-md-8 paddingLeftLess">
+              <div class="radioButton">
+             <label> {{__('label.Gender')}} : </label>
+                            <bdo>
+                            <input type="radio" value="Male"  name="gender" class="validate[required]"/>
+                            <span></span>
+                            <abbr> {{__('label.Male')}} </abbr>
+                            </bdo>
+                            <bdo>
+                            <input type="radio" value="Female"  name="gender" class="validate[required]"/>
+                            <span></span>
+                            <abbr> {{__('label.Female')}} </abbr>
+                            </bdo>
+             </div>   
+            </div>
+          </div>
+               </div>
+               <div class="col-md-6">
+                <div class="form-group">
+            <input class="form-control validate[required,minSize[5],maxSize[15]]" type="Password" placeholder="{{__('label.Password')}}" name="password" id="userConfPassIndividual" onkeyup="seeTextPass(this.value);"/>
+            <span id="individualPassConf" style="display: none;" class="glyphicon glyphicon-eye-open"></span>
+                  </div>          
+               </div>
+                 <div class="col-md-6">
+                   <div class="form-group">
+                 <div class="radioButton">
+             <label> {{__('label.Select your currency')}} :</label>
+                         <bdo>
+                         <input type="radio" value="GBP"  name="currency" class="validate[required]"/>
+                         <span></span>
+                         <abbr> GBP </abbr>
+                         </bdo>
+                         <bdo>
+                         <input type="radio" value="SEK"  name="currency" class="validate[required]"/>
+                         <span></span>
+                         <abbr> SEK </abbr>
+                         </bdo>
+             </div>  
+          </div> 
+                 </div>
+                 <div class="clearfix"></div>
+                 <div class="col-md-6">
+               <div class="form-group">
+              <select class=" AgeGroup selectpicker validate[required]" name="country" id="country" onchange="SelectCountry(this.value)" data-live-search="true">
+                         <option value="">{{__('label.Select country')}}</option>
+                             <?php if(isset($get_country)) 
+                             { 
+                                 foreach ($get_country as $country)
+                                 {
+                                 ?>
+                                    <option value="<?php echo $country->id;?>"><?php echo $country->name;?></option>
+                                 <?php
+                                 }
+                             } 
+                             ?>
+                        </select>
+                   </div>
+                     <div class="form-group">
+             <input class="form-control validate[required]" type="text" placeholder="{{__('label.City')}}" name="city"/>
+           </div> 
+                </div>
+               <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-4 col-sm-4">
+                       <div class="form-group">
+                         <label for="code" style="display:none" id="code">*This field is required<span class="text-error"></span></label>
+               <select class=" AgeGroup selectpicker required" name="country_code" id="countryCode" data-live-search="true">
+                            <option>{{__('label.Code')}}</option>
+                             <?php if(isset($get_country)) 
+                             { 
+                                 foreach ($get_country as $country)
+                                 {
+                                 ?>
+                                    <option value="<?php echo $country->id;?>"><?php echo '+'.$country->phonecode;?></option>
+                                 <?php
+                                 }
+                             } 
+                             ?>
+                         </select>
+                      </div>   
+            </div>
+            <div class="col-md-8 col-sm-8 paddingLeftLess">
+             <div class="form-group">
+             <input class="form-control validate[required] number-only" type="text" placeholder="{{__('label.Mobile Number')}}" name="contact_no" max="15" onkeyup="unique_number(this.value)"/>
+             <div id='phoneNumber_availability_result' style="display:none" class="phoneNumber_availability_result"></div>
+                     </div>
+            </div>
+          </div>
+               </div>
+               <!--div class="col-md-6">
+                <div class="form-group nocaptcha">
+                      <div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdugSgUAAAAAEgPCG1COHHLqZljonv9dw0UEAs-" data-callback="onReturnCallback" data-theme="light"></div>
+                      <span id="captcha_error" class="captcha_error" style="display:none;"></span>
+                   </div>
+               </div-->
+                 <div class="term_condi col-md-12">
+                  <div class="checkbox">
+                            <input name="checkbox1" id="checkbox1" type="checkbox" value="" class="validate[required]"/>
+                          <label for="checkbox1">
+                              {{__('label.Checkbox')}}
+                          </label>
+                      </div>
+                </div>
+               <div class="clearfix"></div>
+               <div class="Registration_button">
+                 <div class="col-md-6 col-sm-6 col-xs-6">
+                  <a href="javascript:void(0);" data-dismiss="modal" onclick="ResetForm()">{{__('label.Cancel')}}</a>
+                 </div>
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                 <div class="col-md-6 col-sm-6 col-xs-6">
+                  <button class="submit" type="submit" id="register">{{__('label.Create')}}</button>
+                 </div>
+               </div>
+         </form>
+        </div>  
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="verify_email" style="display: none;">
+            <img src="{{asset('assets/front_end/images/mail.png')}}"/>  
+          <p>{{__('label.A verification link has been sent to')}}:</p>
+          <h3 id="UserEmailId">john.smith@betogram.se</h3>
+          <a data-dismiss="modal" class="dismiss" href="javascript:void(0);">{{__('label.Got it!')}}</a>
+        </div>  
+      </div>
+    </div>
+    <div class="loader" style="display: none;" id="body_loader">
+      <img src="{{asset('assets/front_end/images/loading.gif')}}"/>
+    </div>
+  </div>
+</div>
 @include('common/footer')
 @include('common/footer_link')
 
